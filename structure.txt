@@ -1,0 +1,4296 @@
+.
+├── dist
+│   ├── DynamoDBRepository.js
+│   ├── config
+│   │   └── index.js
+│   ├── enums
+│   │   ├── awsRegion.js
+│   │   ├── beginsWithSk.js
+│   │   ├── eventSystem.js
+│   │   ├── eventsTableAttributes.js
+│   │   ├── index.js
+│   │   ├── schemaType.js
+│   │   ├── stage.js
+│   │   ├── usersTable.js
+│   │   └── webSocketTarget.js
+│   ├── index.js
+│   ├── schemas
+│   │   ├── event.js
+│   │   ├── eventConnection.js
+│   │   ├── eventPlayers.js
+│   │   ├── eventRounds.js
+│   │   ├── index.js
+│   │   └── user.js
+│   └── types
+│       ├── deleteItemsRequest.js
+│       ├── event.js
+│       ├── extendedProfile.js
+│       ├── getItemsRequest.js
+│       ├── index.js
+│       ├── profile.js
+│       └── userEvent.js
+├── env.yml
+├── node_modules
+│   ├── @aws-crypto
+│   │   ├── sha256-browser
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── build
+│   │   │   │   ├── main
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── constants.js
+│   │   │   │   │   ├── constants.js.map
+│   │   │   │   │   ├── crossPlatformSha256.d.ts
+│   │   │   │   │   ├── crossPlatformSha256.js
+│   │   │   │   │   ├── crossPlatformSha256.js.map
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.js.map
+│   │   │   │   │   ├── isEmptyData.d.ts
+│   │   │   │   │   ├── isEmptyData.js
+│   │   │   │   │   ├── isEmptyData.js.map
+│   │   │   │   │   ├── webCryptoSha256.d.ts
+│   │   │   │   │   ├── webCryptoSha256.js
+│   │   │   │   │   └── webCryptoSha256.js.map
+│   │   │   │   └── module
+│   │   │   │       ├── constants.d.ts
+│   │   │   │       ├── constants.js
+│   │   │   │       ├── constants.js.map
+│   │   │   │       ├── crossPlatformSha256.d.ts
+│   │   │   │       ├── crossPlatformSha256.js
+│   │   │   │       ├── crossPlatformSha256.js.map
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── index.js
+│   │   │   │       ├── index.js.map
+│   │   │   │       ├── isEmptyData.d.ts
+│   │   │   │       ├── isEmptyData.js
+│   │   │   │       ├── isEmptyData.js.map
+│   │   │   │       ├── webCryptoSha256.d.ts
+│   │   │   │       ├── webCryptoSha256.js
+│   │   │   │       └── webCryptoSha256.js.map
+│   │   │   ├── node_modules
+│   │   │   │   └── @smithy
+│   │   │   │       ├── is-array-buffer
+│   │   │   │       │   ├── LICENSE
+│   │   │   │       │   ├── README.md
+│   │   │   │       │   ├── dist-cjs
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   ├── dist-es
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   ├── dist-types
+│   │   │   │       │   │   ├── index.d.ts
+│   │   │   │       │   │   └── ts3.4
+│   │   │   │       │   │       └── index.d.ts
+│   │   │   │       │   └── package.json
+│   │   │   │       ├── util-buffer-from
+│   │   │   │       │   ├── LICENSE
+│   │   │   │       │   ├── README.md
+│   │   │   │       │   ├── dist-cjs
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   ├── dist-es
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   ├── dist-types
+│   │   │   │       │   │   ├── index.d.ts
+│   │   │   │       │   │   └── ts3.4
+│   │   │   │       │   │       └── index.d.ts
+│   │   │   │       │   └── package.json
+│   │   │   │       └── util-utf8
+│   │   │   │           ├── LICENSE
+│   │   │   │           ├── README.md
+│   │   │   │           ├── dist-cjs
+│   │   │   │           │   ├── fromUtf8.browser.js
+│   │   │   │           │   ├── fromUtf8.js
+│   │   │   │           │   ├── index.js
+│   │   │   │           │   ├── toUint8Array.js
+│   │   │   │           │   ├── toUtf8.browser.js
+│   │   │   │           │   └── toUtf8.js
+│   │   │   │           ├── dist-es
+│   │   │   │           │   ├── fromUtf8.browser.js
+│   │   │   │           │   ├── fromUtf8.js
+│   │   │   │           │   ├── index.js
+│   │   │   │           │   ├── toUint8Array.js
+│   │   │   │           │   ├── toUtf8.browser.js
+│   │   │   │           │   └── toUtf8.js
+│   │   │   │           ├── dist-types
+│   │   │   │           │   ├── fromUtf8.browser.d.ts
+│   │   │   │           │   ├── fromUtf8.d.ts
+│   │   │   │           │   ├── index.d.ts
+│   │   │   │           │   ├── toUint8Array.d.ts
+│   │   │   │           │   ├── toUtf8.browser.d.ts
+│   │   │   │           │   ├── toUtf8.d.ts
+│   │   │   │           │   └── ts3.4
+│   │   │   │           │       ├── fromUtf8.browser.d.ts
+│   │   │   │           │       ├── fromUtf8.d.ts
+│   │   │   │           │       ├── index.d.ts
+│   │   │   │           │       ├── toUint8Array.d.ts
+│   │   │   │           │       ├── toUtf8.browser.d.ts
+│   │   │   │           │       └── toUtf8.d.ts
+│   │   │   │           └── package.json
+│   │   │   ├── package.json
+│   │   │   ├── src
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── crossPlatformSha256.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── isEmptyData.ts
+│   │   │   │   └── webCryptoSha256.ts
+│   │   │   ├── tsconfig.json
+│   │   │   └── tsconfig.module.json
+│   │   ├── sha256-js
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── build
+│   │   │   │   ├── main
+│   │   │   │   │   ├── RawSha256.d.ts
+│   │   │   │   │   ├── RawSha256.js
+│   │   │   │   │   ├── RawSha256.js.map
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── constants.js
+│   │   │   │   │   ├── constants.js.map
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.js.map
+│   │   │   │   │   ├── jsSha256.d.ts
+│   │   │   │   │   ├── jsSha256.js
+│   │   │   │   │   ├── jsSha256.js.map
+│   │   │   │   │   ├── knownHashes.fixture.d.ts
+│   │   │   │   │   ├── knownHashes.fixture.js
+│   │   │   │   │   └── knownHashes.fixture.js.map
+│   │   │   │   └── module
+│   │   │   │       ├── RawSha256.d.ts
+│   │   │   │       ├── RawSha256.js
+│   │   │   │       ├── RawSha256.js.map
+│   │   │   │       ├── constants.d.ts
+│   │   │   │       ├── constants.js
+│   │   │   │       ├── constants.js.map
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── index.js
+│   │   │   │       ├── index.js.map
+│   │   │   │       ├── jsSha256.d.ts
+│   │   │   │       ├── jsSha256.js
+│   │   │   │       ├── jsSha256.js.map
+│   │   │   │       ├── knownHashes.fixture.d.ts
+│   │   │   │       ├── knownHashes.fixture.js
+│   │   │   │       └── knownHashes.fixture.js.map
+│   │   │   ├── package.json
+│   │   │   ├── src
+│   │   │   │   ├── RawSha256.ts
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── jsSha256.ts
+│   │   │   │   └── knownHashes.fixture.ts
+│   │   │   ├── tsconfig.json
+│   │   │   └── tsconfig.module.json
+│   │   ├── supports-web-crypto
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── build
+│   │   │   │   ├── main
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.js.map
+│   │   │   │   │   ├── supportsWebCrypto.d.ts
+│   │   │   │   │   ├── supportsWebCrypto.js
+│   │   │   │   │   └── supportsWebCrypto.js.map
+│   │   │   │   └── module
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── index.js
+│   │   │   │       ├── index.js.map
+│   │   │   │       ├── supportsWebCrypto.d.ts
+│   │   │   │       ├── supportsWebCrypto.js
+│   │   │   │       └── supportsWebCrypto.js.map
+│   │   │   ├── package.json
+│   │   │   ├── src
+│   │   │   │   ├── index.ts
+│   │   │   │   └── supportsWebCrypto.ts
+│   │   │   ├── tsconfig.json
+│   │   │   └── tsconfig.module.json
+│   │   └── util
+│   │       ├── CHANGELOG.md
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── build
+│   │       │   ├── main
+│   │       │   │   ├── convertToBuffer.d.ts
+│   │       │   │   ├── convertToBuffer.js
+│   │       │   │   ├── convertToBuffer.js.map
+│   │       │   │   ├── index.d.ts
+│   │       │   │   ├── index.js
+│   │       │   │   ├── index.js.map
+│   │       │   │   ├── isEmptyData.d.ts
+│   │       │   │   ├── isEmptyData.js
+│   │       │   │   ├── isEmptyData.js.map
+│   │       │   │   ├── numToUint8.d.ts
+│   │       │   │   ├── numToUint8.js
+│   │       │   │   ├── numToUint8.js.map
+│   │       │   │   ├── uint32ArrayFrom.d.ts
+│   │       │   │   ├── uint32ArrayFrom.js
+│   │       │   │   └── uint32ArrayFrom.js.map
+│   │       │   └── module
+│   │       │       ├── convertToBuffer.d.ts
+│   │       │       ├── convertToBuffer.js
+│   │       │       ├── convertToBuffer.js.map
+│   │       │       ├── index.d.ts
+│   │       │       ├── index.js
+│   │       │       ├── index.js.map
+│   │       │       ├── isEmptyData.d.ts
+│   │       │       ├── isEmptyData.js
+│   │       │       ├── isEmptyData.js.map
+│   │       │       ├── numToUint8.d.ts
+│   │       │       ├── numToUint8.js
+│   │       │       ├── numToUint8.js.map
+│   │       │       ├── uint32ArrayFrom.d.ts
+│   │       │       ├── uint32ArrayFrom.js
+│   │       │       └── uint32ArrayFrom.js.map
+│   │       ├── node_modules
+│   │       │   └── @smithy
+│   │       │       ├── is-array-buffer
+│   │       │       │   ├── LICENSE
+│   │       │       │   ├── README.md
+│   │       │       │   ├── dist-cjs
+│   │       │       │   │   └── index.js
+│   │       │       │   ├── dist-es
+│   │       │       │   │   └── index.js
+│   │       │       │   ├── dist-types
+│   │       │       │   │   ├── index.d.ts
+│   │       │       │   │   └── ts3.4
+│   │       │       │   │       └── index.d.ts
+│   │       │       │   └── package.json
+│   │       │       ├── util-buffer-from
+│   │       │       │   ├── LICENSE
+│   │       │       │   ├── README.md
+│   │       │       │   ├── dist-cjs
+│   │       │       │   │   └── index.js
+│   │       │       │   ├── dist-es
+│   │       │       │   │   └── index.js
+│   │       │       │   ├── dist-types
+│   │       │       │   │   ├── index.d.ts
+│   │       │       │   │   └── ts3.4
+│   │       │       │   │       └── index.d.ts
+│   │       │       │   └── package.json
+│   │       │       └── util-utf8
+│   │       │           ├── LICENSE
+│   │       │           ├── README.md
+│   │       │           ├── dist-cjs
+│   │       │           │   ├── fromUtf8.browser.js
+│   │       │           │   ├── fromUtf8.js
+│   │       │           │   ├── index.js
+│   │       │           │   ├── toUint8Array.js
+│   │       │           │   ├── toUtf8.browser.js
+│   │       │           │   └── toUtf8.js
+│   │       │           ├── dist-es
+│   │       │           │   ├── fromUtf8.browser.js
+│   │       │           │   ├── fromUtf8.js
+│   │       │           │   ├── index.js
+│   │       │           │   ├── toUint8Array.js
+│   │       │           │   ├── toUtf8.browser.js
+│   │       │           │   └── toUtf8.js
+│   │       │           ├── dist-types
+│   │       │           │   ├── fromUtf8.browser.d.ts
+│   │       │           │   ├── fromUtf8.d.ts
+│   │       │           │   ├── index.d.ts
+│   │       │           │   ├── toUint8Array.d.ts
+│   │       │           │   ├── toUtf8.browser.d.ts
+│   │       │           │   ├── toUtf8.d.ts
+│   │       │           │   └── ts3.4
+│   │       │           │       ├── fromUtf8.browser.d.ts
+│   │       │           │       ├── fromUtf8.d.ts
+│   │       │           │       ├── index.d.ts
+│   │       │           │       ├── toUint8Array.d.ts
+│   │       │           │       ├── toUtf8.browser.d.ts
+│   │       │           │       └── toUtf8.d.ts
+│   │       │           └── package.json
+│   │       ├── package.json
+│   │       ├── src
+│   │       │   ├── convertToBuffer.ts
+│   │       │   ├── index.ts
+│   │       │   ├── isEmptyData.ts
+│   │       │   ├── numToUint8.ts
+│   │       │   └── uint32ArrayFrom.ts
+│   │       ├── tsconfig.json
+│   │       └── tsconfig.module.json
+│   ├── @aws-sdk
+│   │   ├── client-dynamodb
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── auth
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   └── runtimeConfig.shared.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── DynamoDB.js
+│   │   │   │   ├── DynamoDBClient.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.js
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── BatchExecuteStatementCommand.js
+│   │   │   │   │   ├── BatchGetItemCommand.js
+│   │   │   │   │   ├── BatchWriteItemCommand.js
+│   │   │   │   │   ├── CreateBackupCommand.js
+│   │   │   │   │   ├── CreateGlobalTableCommand.js
+│   │   │   │   │   ├── CreateTableCommand.js
+│   │   │   │   │   ├── DeleteBackupCommand.js
+│   │   │   │   │   ├── DeleteItemCommand.js
+│   │   │   │   │   ├── DeleteResourcePolicyCommand.js
+│   │   │   │   │   ├── DeleteTableCommand.js
+│   │   │   │   │   ├── DescribeBackupCommand.js
+│   │   │   │   │   ├── DescribeContinuousBackupsCommand.js
+│   │   │   │   │   ├── DescribeContributorInsightsCommand.js
+│   │   │   │   │   ├── DescribeEndpointsCommand.js
+│   │   │   │   │   ├── DescribeExportCommand.js
+│   │   │   │   │   ├── DescribeGlobalTableCommand.js
+│   │   │   │   │   ├── DescribeGlobalTableSettingsCommand.js
+│   │   │   │   │   ├── DescribeImportCommand.js
+│   │   │   │   │   ├── DescribeKinesisStreamingDestinationCommand.js
+│   │   │   │   │   ├── DescribeLimitsCommand.js
+│   │   │   │   │   ├── DescribeTableCommand.js
+│   │   │   │   │   ├── DescribeTableReplicaAutoScalingCommand.js
+│   │   │   │   │   ├── DescribeTimeToLiveCommand.js
+│   │   │   │   │   ├── DisableKinesisStreamingDestinationCommand.js
+│   │   │   │   │   ├── EnableKinesisStreamingDestinationCommand.js
+│   │   │   │   │   ├── ExecuteStatementCommand.js
+│   │   │   │   │   ├── ExecuteTransactionCommand.js
+│   │   │   │   │   ├── ExportTableToPointInTimeCommand.js
+│   │   │   │   │   ├── GetItemCommand.js
+│   │   │   │   │   ├── GetResourcePolicyCommand.js
+│   │   │   │   │   ├── ImportTableCommand.js
+│   │   │   │   │   ├── ListBackupsCommand.js
+│   │   │   │   │   ├── ListContributorInsightsCommand.js
+│   │   │   │   │   ├── ListExportsCommand.js
+│   │   │   │   │   ├── ListGlobalTablesCommand.js
+│   │   │   │   │   ├── ListImportsCommand.js
+│   │   │   │   │   ├── ListTablesCommand.js
+│   │   │   │   │   ├── ListTagsOfResourceCommand.js
+│   │   │   │   │   ├── PutItemCommand.js
+│   │   │   │   │   ├── PutResourcePolicyCommand.js
+│   │   │   │   │   ├── QueryCommand.js
+│   │   │   │   │   ├── RestoreTableFromBackupCommand.js
+│   │   │   │   │   ├── RestoreTableToPointInTimeCommand.js
+│   │   │   │   │   ├── ScanCommand.js
+│   │   │   │   │   ├── TagResourceCommand.js
+│   │   │   │   │   ├── TransactGetItemsCommand.js
+│   │   │   │   │   ├── TransactWriteItemsCommand.js
+│   │   │   │   │   ├── UntagResourceCommand.js
+│   │   │   │   │   ├── UpdateContinuousBackupsCommand.js
+│   │   │   │   │   ├── UpdateContributorInsightsCommand.js
+│   │   │   │   │   ├── UpdateGlobalTableCommand.js
+│   │   │   │   │   ├── UpdateGlobalTableSettingsCommand.js
+│   │   │   │   │   ├── UpdateItemCommand.js
+│   │   │   │   │   ├── UpdateKinesisStreamingDestinationCommand.js
+│   │   │   │   │   ├── UpdateTableCommand.js
+│   │   │   │   │   ├── UpdateTableReplicaAutoScalingCommand.js
+│   │   │   │   │   ├── UpdateTimeToLiveCommand.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.js
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── extensionConfiguration.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── models
+│   │   │   │   │   ├── DynamoDBServiceException.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── models_0.js
+│   │   │   │   ├── pagination
+│   │   │   │   │   ├── Interfaces.js
+│   │   │   │   │   ├── ListContributorInsightsPaginator.js
+│   │   │   │   │   ├── ListExportsPaginator.js
+│   │   │   │   │   ├── ListImportsPaginator.js
+│   │   │   │   │   ├── ListTablesPaginator.js
+│   │   │   │   │   ├── QueryPaginator.js
+│   │   │   │   │   ├── ScanPaginator.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_json1_0.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   ├── runtimeConfig.shared.js
+│   │   │   │   ├── runtimeExtensions.js
+│   │   │   │   └── waiters
+│   │   │   │       ├── index.js
+│   │   │   │       ├── waitForTableExists.js
+│   │   │   │       └── waitForTableNotExists.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── DynamoDB.d.ts
+│   │   │   │   ├── DynamoDBClient.d.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │   │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── BatchExecuteStatementCommand.d.ts
+│   │   │   │   │   ├── BatchGetItemCommand.d.ts
+│   │   │   │   │   ├── BatchWriteItemCommand.d.ts
+│   │   │   │   │   ├── CreateBackupCommand.d.ts
+│   │   │   │   │   ├── CreateGlobalTableCommand.d.ts
+│   │   │   │   │   ├── CreateTableCommand.d.ts
+│   │   │   │   │   ├── DeleteBackupCommand.d.ts
+│   │   │   │   │   ├── DeleteItemCommand.d.ts
+│   │   │   │   │   ├── DeleteResourcePolicyCommand.d.ts
+│   │   │   │   │   ├── DeleteTableCommand.d.ts
+│   │   │   │   │   ├── DescribeBackupCommand.d.ts
+│   │   │   │   │   ├── DescribeContinuousBackupsCommand.d.ts
+│   │   │   │   │   ├── DescribeContributorInsightsCommand.d.ts
+│   │   │   │   │   ├── DescribeEndpointsCommand.d.ts
+│   │   │   │   │   ├── DescribeExportCommand.d.ts
+│   │   │   │   │   ├── DescribeGlobalTableCommand.d.ts
+│   │   │   │   │   ├── DescribeGlobalTableSettingsCommand.d.ts
+│   │   │   │   │   ├── DescribeImportCommand.d.ts
+│   │   │   │   │   ├── DescribeKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   ├── DescribeLimitsCommand.d.ts
+│   │   │   │   │   ├── DescribeTableCommand.d.ts
+│   │   │   │   │   ├── DescribeTableReplicaAutoScalingCommand.d.ts
+│   │   │   │   │   ├── DescribeTimeToLiveCommand.d.ts
+│   │   │   │   │   ├── DisableKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   ├── EnableKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   ├── ExecuteStatementCommand.d.ts
+│   │   │   │   │   ├── ExecuteTransactionCommand.d.ts
+│   │   │   │   │   ├── ExportTableToPointInTimeCommand.d.ts
+│   │   │   │   │   ├── GetItemCommand.d.ts
+│   │   │   │   │   ├── GetResourcePolicyCommand.d.ts
+│   │   │   │   │   ├── ImportTableCommand.d.ts
+│   │   │   │   │   ├── ListBackupsCommand.d.ts
+│   │   │   │   │   ├── ListContributorInsightsCommand.d.ts
+│   │   │   │   │   ├── ListExportsCommand.d.ts
+│   │   │   │   │   ├── ListGlobalTablesCommand.d.ts
+│   │   │   │   │   ├── ListImportsCommand.d.ts
+│   │   │   │   │   ├── ListTablesCommand.d.ts
+│   │   │   │   │   ├── ListTagsOfResourceCommand.d.ts
+│   │   │   │   │   ├── PutItemCommand.d.ts
+│   │   │   │   │   ├── PutResourcePolicyCommand.d.ts
+│   │   │   │   │   ├── QueryCommand.d.ts
+│   │   │   │   │   ├── RestoreTableFromBackupCommand.d.ts
+│   │   │   │   │   ├── RestoreTableToPointInTimeCommand.d.ts
+│   │   │   │   │   ├── ScanCommand.d.ts
+│   │   │   │   │   ├── TagResourceCommand.d.ts
+│   │   │   │   │   ├── TransactGetItemsCommand.d.ts
+│   │   │   │   │   ├── TransactWriteItemsCommand.d.ts
+│   │   │   │   │   ├── UntagResourceCommand.d.ts
+│   │   │   │   │   ├── UpdateContinuousBackupsCommand.d.ts
+│   │   │   │   │   ├── UpdateContributorInsightsCommand.d.ts
+│   │   │   │   │   ├── UpdateGlobalTableCommand.d.ts
+│   │   │   │   │   ├── UpdateGlobalTableSettingsCommand.d.ts
+│   │   │   │   │   ├── UpdateItemCommand.d.ts
+│   │   │   │   │   ├── UpdateKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   ├── UpdateTableCommand.d.ts
+│   │   │   │   │   ├── UpdateTableReplicaAutoScalingCommand.d.ts
+│   │   │   │   │   ├── UpdateTimeToLiveCommand.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.d.ts
+│   │   │   │   │   ├── endpointResolver.d.ts
+│   │   │   │   │   └── ruleset.d.ts
+│   │   │   │   ├── extensionConfiguration.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── models
+│   │   │   │   │   ├── DynamoDBServiceException.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── models_0.d.ts
+│   │   │   │   ├── pagination
+│   │   │   │   │   ├── Interfaces.d.ts
+│   │   │   │   │   ├── ListContributorInsightsPaginator.d.ts
+│   │   │   │   │   ├── ListExportsPaginator.d.ts
+│   │   │   │   │   ├── ListImportsPaginator.d.ts
+│   │   │   │   │   ├── ListTablesPaginator.d.ts
+│   │   │   │   │   ├── QueryPaginator.d.ts
+│   │   │   │   │   ├── ScanPaginator.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_json1_0.d.ts
+│   │   │   │   ├── runtimeConfig.browser.d.ts
+│   │   │   │   ├── runtimeConfig.d.ts
+│   │   │   │   ├── runtimeConfig.native.d.ts
+│   │   │   │   ├── runtimeConfig.shared.d.ts
+│   │   │   │   ├── runtimeExtensions.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── DynamoDB.d.ts
+│   │   │   │   │   ├── DynamoDBClient.d.ts
+│   │   │   │   │   ├── auth
+│   │   │   │   │   │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │   │   │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │   │   ├── commands
+│   │   │   │   │   │   ├── BatchExecuteStatementCommand.d.ts
+│   │   │   │   │   │   ├── BatchGetItemCommand.d.ts
+│   │   │   │   │   │   ├── BatchWriteItemCommand.d.ts
+│   │   │   │   │   │   ├── CreateBackupCommand.d.ts
+│   │   │   │   │   │   ├── CreateGlobalTableCommand.d.ts
+│   │   │   │   │   │   ├── CreateTableCommand.d.ts
+│   │   │   │   │   │   ├── DeleteBackupCommand.d.ts
+│   │   │   │   │   │   ├── DeleteItemCommand.d.ts
+│   │   │   │   │   │   ├── DeleteResourcePolicyCommand.d.ts
+│   │   │   │   │   │   ├── DeleteTableCommand.d.ts
+│   │   │   │   │   │   ├── DescribeBackupCommand.d.ts
+│   │   │   │   │   │   ├── DescribeContinuousBackupsCommand.d.ts
+│   │   │   │   │   │   ├── DescribeContributorInsightsCommand.d.ts
+│   │   │   │   │   │   ├── DescribeEndpointsCommand.d.ts
+│   │   │   │   │   │   ├── DescribeExportCommand.d.ts
+│   │   │   │   │   │   ├── DescribeGlobalTableCommand.d.ts
+│   │   │   │   │   │   ├── DescribeGlobalTableSettingsCommand.d.ts
+│   │   │   │   │   │   ├── DescribeImportCommand.d.ts
+│   │   │   │   │   │   ├── DescribeKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   │   ├── DescribeLimitsCommand.d.ts
+│   │   │   │   │   │   ├── DescribeTableCommand.d.ts
+│   │   │   │   │   │   ├── DescribeTableReplicaAutoScalingCommand.d.ts
+│   │   │   │   │   │   ├── DescribeTimeToLiveCommand.d.ts
+│   │   │   │   │   │   ├── DisableKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   │   ├── EnableKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   │   ├── ExecuteStatementCommand.d.ts
+│   │   │   │   │   │   ├── ExecuteTransactionCommand.d.ts
+│   │   │   │   │   │   ├── ExportTableToPointInTimeCommand.d.ts
+│   │   │   │   │   │   ├── GetItemCommand.d.ts
+│   │   │   │   │   │   ├── GetResourcePolicyCommand.d.ts
+│   │   │   │   │   │   ├── ImportTableCommand.d.ts
+│   │   │   │   │   │   ├── ListBackupsCommand.d.ts
+│   │   │   │   │   │   ├── ListContributorInsightsCommand.d.ts
+│   │   │   │   │   │   ├── ListExportsCommand.d.ts
+│   │   │   │   │   │   ├── ListGlobalTablesCommand.d.ts
+│   │   │   │   │   │   ├── ListImportsCommand.d.ts
+│   │   │   │   │   │   ├── ListTablesCommand.d.ts
+│   │   │   │   │   │   ├── ListTagsOfResourceCommand.d.ts
+│   │   │   │   │   │   ├── PutItemCommand.d.ts
+│   │   │   │   │   │   ├── PutResourcePolicyCommand.d.ts
+│   │   │   │   │   │   ├── QueryCommand.d.ts
+│   │   │   │   │   │   ├── RestoreTableFromBackupCommand.d.ts
+│   │   │   │   │   │   ├── RestoreTableToPointInTimeCommand.d.ts
+│   │   │   │   │   │   ├── ScanCommand.d.ts
+│   │   │   │   │   │   ├── TagResourceCommand.d.ts
+│   │   │   │   │   │   ├── TransactGetItemsCommand.d.ts
+│   │   │   │   │   │   ├── TransactWriteItemsCommand.d.ts
+│   │   │   │   │   │   ├── UntagResourceCommand.d.ts
+│   │   │   │   │   │   ├── UpdateContinuousBackupsCommand.d.ts
+│   │   │   │   │   │   ├── UpdateContributorInsightsCommand.d.ts
+│   │   │   │   │   │   ├── UpdateGlobalTableCommand.d.ts
+│   │   │   │   │   │   ├── UpdateGlobalTableSettingsCommand.d.ts
+│   │   │   │   │   │   ├── UpdateItemCommand.d.ts
+│   │   │   │   │   │   ├── UpdateKinesisStreamingDestinationCommand.d.ts
+│   │   │   │   │   │   ├── UpdateTableCommand.d.ts
+│   │   │   │   │   │   ├── UpdateTableReplicaAutoScalingCommand.d.ts
+│   │   │   │   │   │   ├── UpdateTimeToLiveCommand.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── endpoint
+│   │   │   │   │   │   ├── EndpointParameters.d.ts
+│   │   │   │   │   │   ├── endpointResolver.d.ts
+│   │   │   │   │   │   └── ruleset.d.ts
+│   │   │   │   │   ├── extensionConfiguration.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── models
+│   │   │   │   │   │   ├── DynamoDBServiceException.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── models_0.d.ts
+│   │   │   │   │   ├── pagination
+│   │   │   │   │   │   ├── Interfaces.d.ts
+│   │   │   │   │   │   ├── ListContributorInsightsPaginator.d.ts
+│   │   │   │   │   │   ├── ListExportsPaginator.d.ts
+│   │   │   │   │   │   ├── ListImportsPaginator.d.ts
+│   │   │   │   │   │   ├── ListTablesPaginator.d.ts
+│   │   │   │   │   │   ├── QueryPaginator.d.ts
+│   │   │   │   │   │   ├── ScanPaginator.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── protocols
+│   │   │   │   │   │   └── Aws_json1_0.d.ts
+│   │   │   │   │   ├── runtimeConfig.browser.d.ts
+│   │   │   │   │   ├── runtimeConfig.d.ts
+│   │   │   │   │   ├── runtimeConfig.native.d.ts
+│   │   │   │   │   ├── runtimeConfig.shared.d.ts
+│   │   │   │   │   ├── runtimeExtensions.d.ts
+│   │   │   │   │   └── waiters
+│   │   │   │   │       ├── index.d.ts
+│   │   │   │   │       ├── waitForTableExists.d.ts
+│   │   │   │   │       └── waitForTableNotExists.d.ts
+│   │   │   │   └── waiters
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── waitForTableExists.d.ts
+│   │   │   │       └── waitForTableNotExists.d.ts
+│   │   │   └── package.json
+│   │   ├── client-sso
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── auth
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   └── runtimeConfig.shared.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── SSO.js
+│   │   │   │   ├── SSOClient.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.js
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── GetRoleCredentialsCommand.js
+│   │   │   │   │   ├── ListAccountRolesCommand.js
+│   │   │   │   │   ├── ListAccountsCommand.js
+│   │   │   │   │   ├── LogoutCommand.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.js
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── extensionConfiguration.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── models
+│   │   │   │   │   ├── SSOServiceException.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── models_0.js
+│   │   │   │   ├── pagination
+│   │   │   │   │   ├── Interfaces.js
+│   │   │   │   │   ├── ListAccountRolesPaginator.js
+│   │   │   │   │   ├── ListAccountsPaginator.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_restJson1.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   ├── runtimeConfig.shared.js
+│   │   │   │   └── runtimeExtensions.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── SSO.d.ts
+│   │   │   │   ├── SSOClient.d.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │   │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── GetRoleCredentialsCommand.d.ts
+│   │   │   │   │   ├── ListAccountRolesCommand.d.ts
+│   │   │   │   │   ├── ListAccountsCommand.d.ts
+│   │   │   │   │   ├── LogoutCommand.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.d.ts
+│   │   │   │   │   ├── endpointResolver.d.ts
+│   │   │   │   │   └── ruleset.d.ts
+│   │   │   │   ├── extensionConfiguration.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── models
+│   │   │   │   │   ├── SSOServiceException.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── models_0.d.ts
+│   │   │   │   ├── pagination
+│   │   │   │   │   ├── Interfaces.d.ts
+│   │   │   │   │   ├── ListAccountRolesPaginator.d.ts
+│   │   │   │   │   ├── ListAccountsPaginator.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_restJson1.d.ts
+│   │   │   │   ├── runtimeConfig.browser.d.ts
+│   │   │   │   ├── runtimeConfig.d.ts
+│   │   │   │   ├── runtimeConfig.native.d.ts
+│   │   │   │   ├── runtimeConfig.shared.d.ts
+│   │   │   │   ├── runtimeExtensions.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── SSO.d.ts
+│   │   │   │       ├── SSOClient.d.ts
+│   │   │   │       ├── auth
+│   │   │   │       │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │       │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │       ├── commands
+│   │   │   │       │   ├── GetRoleCredentialsCommand.d.ts
+│   │   │   │       │   ├── ListAccountRolesCommand.d.ts
+│   │   │   │       │   ├── ListAccountsCommand.d.ts
+│   │   │   │       │   ├── LogoutCommand.d.ts
+│   │   │   │       │   └── index.d.ts
+│   │   │   │       ├── endpoint
+│   │   │   │       │   ├── EndpointParameters.d.ts
+│   │   │   │       │   ├── endpointResolver.d.ts
+│   │   │   │       │   └── ruleset.d.ts
+│   │   │   │       ├── extensionConfiguration.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── models
+│   │   │   │       │   ├── SSOServiceException.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   └── models_0.d.ts
+│   │   │   │       ├── pagination
+│   │   │   │       │   ├── Interfaces.d.ts
+│   │   │   │       │   ├── ListAccountRolesPaginator.d.ts
+│   │   │   │       │   ├── ListAccountsPaginator.d.ts
+│   │   │   │       │   └── index.d.ts
+│   │   │   │       ├── protocols
+│   │   │   │       │   └── Aws_restJson1.d.ts
+│   │   │   │       ├── runtimeConfig.browser.d.ts
+│   │   │   │       ├── runtimeConfig.d.ts
+│   │   │   │       ├── runtimeConfig.native.d.ts
+│   │   │   │       ├── runtimeConfig.shared.d.ts
+│   │   │   │       └── runtimeExtensions.d.ts
+│   │   │   └── package.json
+│   │   ├── client-sso-oidc
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── auth
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   └── runtimeConfig.shared.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── SSOOIDC.js
+│   │   │   │   ├── SSOOIDCClient.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.js
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── CreateTokenCommand.js
+│   │   │   │   │   ├── CreateTokenWithIAMCommand.js
+│   │   │   │   │   ├── RegisterClientCommand.js
+│   │   │   │   │   ├── StartDeviceAuthorizationCommand.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.js
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── extensionConfiguration.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── models
+│   │   │   │   │   ├── SSOOIDCServiceException.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── models_0.js
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_restJson1.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   ├── runtimeConfig.shared.js
+│   │   │   │   └── runtimeExtensions.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── SSOOIDC.d.ts
+│   │   │   │   ├── SSOOIDCClient.d.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │   │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── CreateTokenCommand.d.ts
+│   │   │   │   │   ├── CreateTokenWithIAMCommand.d.ts
+│   │   │   │   │   ├── RegisterClientCommand.d.ts
+│   │   │   │   │   ├── StartDeviceAuthorizationCommand.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.d.ts
+│   │   │   │   │   ├── endpointResolver.d.ts
+│   │   │   │   │   └── ruleset.d.ts
+│   │   │   │   ├── extensionConfiguration.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── models
+│   │   │   │   │   ├── SSOOIDCServiceException.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── models_0.d.ts
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_restJson1.d.ts
+│   │   │   │   ├── runtimeConfig.browser.d.ts
+│   │   │   │   ├── runtimeConfig.d.ts
+│   │   │   │   ├── runtimeConfig.native.d.ts
+│   │   │   │   ├── runtimeConfig.shared.d.ts
+│   │   │   │   ├── runtimeExtensions.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── SSOOIDC.d.ts
+│   │   │   │       ├── SSOOIDCClient.d.ts
+│   │   │   │       ├── auth
+│   │   │   │       │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │       │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │       ├── commands
+│   │   │   │       │   ├── CreateTokenCommand.d.ts
+│   │   │   │       │   ├── CreateTokenWithIAMCommand.d.ts
+│   │   │   │       │   ├── RegisterClientCommand.d.ts
+│   │   │   │       │   ├── StartDeviceAuthorizationCommand.d.ts
+│   │   │   │       │   └── index.d.ts
+│   │   │   │       ├── endpoint
+│   │   │   │       │   ├── EndpointParameters.d.ts
+│   │   │   │       │   ├── endpointResolver.d.ts
+│   │   │   │       │   └── ruleset.d.ts
+│   │   │   │       ├── extensionConfiguration.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── models
+│   │   │   │       │   ├── SSOOIDCServiceException.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   └── models_0.d.ts
+│   │   │   │       ├── protocols
+│   │   │   │       │   └── Aws_restJson1.d.ts
+│   │   │   │       ├── runtimeConfig.browser.d.ts
+│   │   │   │       ├── runtimeConfig.d.ts
+│   │   │   │       ├── runtimeConfig.native.d.ts
+│   │   │   │       ├── runtimeConfig.shared.d.ts
+│   │   │   │       └── runtimeExtensions.d.ts
+│   │   │   └── package.json
+│   │   ├── client-sts
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── STSClient.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.js
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.js
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   ├── runtimeConfig.shared.js
+│   │   │   │   └── runtimeExtensions.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── STS.js
+│   │   │   │   ├── STSClient.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.js
+│   │   │   │   │   └── httpAuthSchemeProvider.js
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── AssumeRoleCommand.js
+│   │   │   │   │   ├── AssumeRoleWithSAMLCommand.js
+│   │   │   │   │   ├── AssumeRoleWithWebIdentityCommand.js
+│   │   │   │   │   ├── DecodeAuthorizationMessageCommand.js
+│   │   │   │   │   ├── GetAccessKeyInfoCommand.js
+│   │   │   │   │   ├── GetCallerIdentityCommand.js
+│   │   │   │   │   ├── GetFederationTokenCommand.js
+│   │   │   │   │   ├── GetSessionTokenCommand.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── defaultRoleAssumers.js
+│   │   │   │   ├── defaultStsRoleAssumers.js
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.js
+│   │   │   │   │   ├── endpointResolver.js
+│   │   │   │   │   └── ruleset.js
+│   │   │   │   ├── extensionConfiguration.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── models
+│   │   │   │   │   ├── STSServiceException.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── models_0.js
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_query.js
+│   │   │   │   ├── runtimeConfig.browser.js
+│   │   │   │   ├── runtimeConfig.js
+│   │   │   │   ├── runtimeConfig.native.js
+│   │   │   │   ├── runtimeConfig.shared.js
+│   │   │   │   └── runtimeExtensions.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── STS.d.ts
+│   │   │   │   ├── STSClient.d.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │   │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── AssumeRoleCommand.d.ts
+│   │   │   │   │   ├── AssumeRoleWithSAMLCommand.d.ts
+│   │   │   │   │   ├── AssumeRoleWithWebIdentityCommand.d.ts
+│   │   │   │   │   ├── DecodeAuthorizationMessageCommand.d.ts
+│   │   │   │   │   ├── GetAccessKeyInfoCommand.d.ts
+│   │   │   │   │   ├── GetCallerIdentityCommand.d.ts
+│   │   │   │   │   ├── GetFederationTokenCommand.d.ts
+│   │   │   │   │   ├── GetSessionTokenCommand.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── defaultRoleAssumers.d.ts
+│   │   │   │   ├── defaultStsRoleAssumers.d.ts
+│   │   │   │   ├── endpoint
+│   │   │   │   │   ├── EndpointParameters.d.ts
+│   │   │   │   │   ├── endpointResolver.d.ts
+│   │   │   │   │   └── ruleset.d.ts
+│   │   │   │   ├── extensionConfiguration.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── models
+│   │   │   │   │   ├── STSServiceException.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── models_0.d.ts
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── Aws_query.d.ts
+│   │   │   │   ├── runtimeConfig.browser.d.ts
+│   │   │   │   ├── runtimeConfig.d.ts
+│   │   │   │   ├── runtimeConfig.native.d.ts
+│   │   │   │   ├── runtimeConfig.shared.d.ts
+│   │   │   │   ├── runtimeExtensions.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── STS.d.ts
+│   │   │   │       ├── STSClient.d.ts
+│   │   │   │       ├── auth
+│   │   │   │       │   ├── httpAuthExtensionConfiguration.d.ts
+│   │   │   │       │   └── httpAuthSchemeProvider.d.ts
+│   │   │   │       ├── commands
+│   │   │   │       │   ├── AssumeRoleCommand.d.ts
+│   │   │   │       │   ├── AssumeRoleWithSAMLCommand.d.ts
+│   │   │   │       │   ├── AssumeRoleWithWebIdentityCommand.d.ts
+│   │   │   │       │   ├── DecodeAuthorizationMessageCommand.d.ts
+│   │   │   │       │   ├── GetAccessKeyInfoCommand.d.ts
+│   │   │   │       │   ├── GetCallerIdentityCommand.d.ts
+│   │   │   │       │   ├── GetFederationTokenCommand.d.ts
+│   │   │   │       │   ├── GetSessionTokenCommand.d.ts
+│   │   │   │       │   └── index.d.ts
+│   │   │   │       ├── defaultRoleAssumers.d.ts
+│   │   │   │       ├── defaultStsRoleAssumers.d.ts
+│   │   │   │       ├── endpoint
+│   │   │   │       │   ├── EndpointParameters.d.ts
+│   │   │   │       │   ├── endpointResolver.d.ts
+│   │   │   │       │   └── ruleset.d.ts
+│   │   │   │       ├── extensionConfiguration.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── models
+│   │   │   │       │   ├── STSServiceException.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   └── models_0.d.ts
+│   │   │   │       ├── protocols
+│   │   │   │       │   └── Aws_query.d.ts
+│   │   │   │       ├── runtimeConfig.browser.d.ts
+│   │   │   │       ├── runtimeConfig.d.ts
+│   │   │   │       ├── runtimeConfig.native.d.ts
+│   │   │   │       ├── runtimeConfig.shared.d.ts
+│   │   │   │       └── runtimeExtensions.d.ts
+│   │   │   └── package.json
+│   │   ├── core
+│   │   │   ├── README.md
+│   │   │   ├── client.js
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── index.js
+│   │   │   │   └── submodules
+│   │   │   │       ├── client
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── httpAuthSchemes
+│   │   │   │       │   └── index.js
+│   │   │   │       └── protocols
+│   │   │   │           └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── index.js
+│   │   │   │   └── submodules
+│   │   │   │       ├── client
+│   │   │   │       │   ├── emitWarningIfUnsupportedVersion.js
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── httpAuthSchemes
+│   │   │   │       │   ├── aws_sdk
+│   │   │   │       │   │   ├── AwsSdkSigV4Signer.js
+│   │   │   │       │   │   ├── index.js
+│   │   │   │       │   │   └── resolveAwsSdkSigV4Config.js
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   └── utils
+│   │   │   │       │       ├── getDateHeader.js
+│   │   │   │       │       ├── getSkewCorrectedDate.js
+│   │   │   │       │       ├── getUpdatedSystemClockOffset.js
+│   │   │   │       │       ├── index.js
+│   │   │   │       │       └── isClockSkewed.js
+│   │   │   │       └── protocols
+│   │   │   │           ├── coercing-serializers.js
+│   │   │   │           ├── common.js
+│   │   │   │           ├── index.js
+│   │   │   │           ├── json
+│   │   │   │           │   ├── awsExpectUnion.js
+│   │   │   │           │   └── parseJsonBody.js
+│   │   │   │           └── xml
+│   │   │   │               └── parseXmlBody.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── submodules
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── emitWarningIfUnsupportedVersion.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── httpAuthSchemes
+│   │   │   │   │   │   ├── aws_sdk
+│   │   │   │   │   │   │   ├── AwsSdkSigV4Signer.d.ts
+│   │   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   │   └── resolveAwsSdkSigV4Config.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── getDateHeader.d.ts
+│   │   │   │   │   │       ├── getSkewCorrectedDate.d.ts
+│   │   │   │   │   │       ├── getUpdatedSystemClockOffset.d.ts
+│   │   │   │   │   │       ├── index.d.ts
+│   │   │   │   │   │       └── isClockSkewed.d.ts
+│   │   │   │   │   └── protocols
+│   │   │   │   │       ├── coercing-serializers.d.ts
+│   │   │   │   │       ├── common.d.ts
+│   │   │   │   │       ├── index.d.ts
+│   │   │   │   │       ├── json
+│   │   │   │   │       │   ├── awsExpectUnion.d.ts
+│   │   │   │   │       │   └── parseJsonBody.d.ts
+│   │   │   │   │       └── xml
+│   │   │   │   │           └── parseXmlBody.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── submodules
+│   │   │   │           ├── client
+│   │   │   │           │   ├── emitWarningIfUnsupportedVersion.d.ts
+│   │   │   │           │   └── index.d.ts
+│   │   │   │           ├── httpAuthSchemes
+│   │   │   │           │   ├── aws_sdk
+│   │   │   │           │   │   ├── AwsSdkSigV4Signer.d.ts
+│   │   │   │           │   │   ├── index.d.ts
+│   │   │   │           │   │   └── resolveAwsSdkSigV4Config.d.ts
+│   │   │   │           │   ├── index.d.ts
+│   │   │   │           │   └── utils
+│   │   │   │           │       ├── getDateHeader.d.ts
+│   │   │   │           │       ├── getSkewCorrectedDate.d.ts
+│   │   │   │           │       ├── getUpdatedSystemClockOffset.d.ts
+│   │   │   │           │       ├── index.d.ts
+│   │   │   │           │       └── isClockSkewed.d.ts
+│   │   │   │           └── protocols
+│   │   │   │               ├── coercing-serializers.d.ts
+│   │   │   │               ├── common.d.ts
+│   │   │   │               ├── index.d.ts
+│   │   │   │               ├── json
+│   │   │   │               │   ├── awsExpectUnion.d.ts
+│   │   │   │               │   └── parseJsonBody.d.ts
+│   │   │   │               └── xml
+│   │   │   │                   └── parseXmlBody.d.ts
+│   │   │   ├── httpAuthSchemes.js
+│   │   │   ├── package.json
+│   │   │   └── protocols.js
+│   │   ├── credential-provider-env
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fromEnv.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fromEnv.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── fromEnv.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-http
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── fromHttp
+│   │   │   │   │   ├── checkUrl.js
+│   │   │   │   │   ├── fromHttp.browser.js
+│   │   │   │   │   ├── fromHttp.js
+│   │   │   │   │   ├── fromHttpTypes.js
+│   │   │   │   │   ├── requestHelpers.js
+│   │   │   │   │   └── retry-wrapper.js
+│   │   │   │   ├── index.browser.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fromHttp
+│   │   │   │   │   ├── checkUrl.js
+│   │   │   │   │   ├── fromHttp.browser.js
+│   │   │   │   │   ├── fromHttp.js
+│   │   │   │   │   ├── fromHttpTypes.js
+│   │   │   │   │   ├── requestHelpers.js
+│   │   │   │   │   └── retry-wrapper.js
+│   │   │   │   ├── index.browser.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fromHttp
+│   │   │   │   │   ├── checkUrl.d.ts
+│   │   │   │   │   ├── fromHttp.browser.d.ts
+│   │   │   │   │   ├── fromHttp.d.ts
+│   │   │   │   │   ├── fromHttpTypes.d.ts
+│   │   │   │   │   ├── requestHelpers.d.ts
+│   │   │   │   │   └── retry-wrapper.d.ts
+│   │   │   │   ├── index.browser.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── fromHttp
+│   │   │   │       │   ├── checkUrl.d.ts
+│   │   │   │       │   ├── fromHttp.browser.d.ts
+│   │   │   │       │   ├── fromHttp.d.ts
+│   │   │   │       │   ├── fromHttpTypes.d.ts
+│   │   │   │       │   ├── requestHelpers.d.ts
+│   │   │   │       │   └── retry-wrapper.d.ts
+│   │   │   │       ├── index.browser.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-ini
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fromIni.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── resolveAssumeRoleCredentials.js
+│   │   │   │   ├── resolveCredentialSource.js
+│   │   │   │   ├── resolveProcessCredentials.js
+│   │   │   │   ├── resolveProfileData.js
+│   │   │   │   ├── resolveSsoCredentials.js
+│   │   │   │   ├── resolveStaticCredentials.js
+│   │   │   │   └── resolveWebIdentityCredentials.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fromIni.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── resolveAssumeRoleCredentials.d.ts
+│   │   │   │   ├── resolveCredentialSource.d.ts
+│   │   │   │   ├── resolveProcessCredentials.d.ts
+│   │   │   │   ├── resolveProfileData.d.ts
+│   │   │   │   ├── resolveSsoCredentials.d.ts
+│   │   │   │   ├── resolveStaticCredentials.d.ts
+│   │   │   │   ├── resolveWebIdentityCredentials.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── fromIni.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── resolveAssumeRoleCredentials.d.ts
+│   │   │   │       ├── resolveCredentialSource.d.ts
+│   │   │   │       ├── resolveProcessCredentials.d.ts
+│   │   │   │       ├── resolveProfileData.d.ts
+│   │   │   │       ├── resolveSsoCredentials.d.ts
+│   │   │   │       ├── resolveStaticCredentials.d.ts
+│   │   │   │       └── resolveWebIdentityCredentials.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-node
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── defaultProvider.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── remoteProvider.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── defaultProvider.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── remoteProvider.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── defaultProvider.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── remoteProvider.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-process
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── ProcessCredentials.js
+│   │   │   │   ├── fromProcess.js
+│   │   │   │   ├── getValidatedProcessCredentials.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── resolveProcessCredentials.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── ProcessCredentials.d.ts
+│   │   │   │   ├── fromProcess.d.ts
+│   │   │   │   ├── getValidatedProcessCredentials.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── resolveProcessCredentials.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── ProcessCredentials.d.ts
+│   │   │   │       ├── fromProcess.d.ts
+│   │   │   │       ├── getValidatedProcessCredentials.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── resolveProcessCredentials.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-sso
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fromSSO.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── isSsoProfile.js
+│   │   │   │   ├── loadSso.js
+│   │   │   │   ├── resolveSSOCredentials.js
+│   │   │   │   ├── types.js
+│   │   │   │   └── validateSsoProfile.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fromSSO.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── isSsoProfile.d.ts
+│   │   │   │   ├── loadSso.d.ts
+│   │   │   │   ├── resolveSSOCredentials.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── fromSSO.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── isSsoProfile.d.ts
+│   │   │   │   │   ├── loadSso.d.ts
+│   │   │   │   │   ├── resolveSSOCredentials.d.ts
+│   │   │   │   │   ├── types.d.ts
+│   │   │   │   │   └── validateSsoProfile.d.ts
+│   │   │   │   ├── types.d.ts
+│   │   │   │   └── validateSsoProfile.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-web-identity
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── fromTokenFile.js
+│   │   │   │   ├── fromWebToken.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fromTokenFile.js
+│   │   │   │   ├── fromWebToken.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fromTokenFile.d.ts
+│   │   │   │   ├── fromWebToken.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── fromTokenFile.d.ts
+│   │   │   │       ├── fromWebToken.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── endpoint-cache
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── Endpoint.js
+│   │   │   │   ├── EndpointCache.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── Endpoint.js
+│   │   │   │   ├── EndpointCache.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── Endpoint.d.ts
+│   │   │   │   ├── EndpointCache.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── Endpoint.d.ts
+│   │   │   │       ├── EndpointCache.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-endpoint-discovery
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── configurations.js
+│   │   │   │   ├── endpointDiscoveryMiddleware.js
+│   │   │   │   ├── getCacheKey.js
+│   │   │   │   ├── getEndpointDiscoveryPlugin.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── resolveEndpointDiscoveryConfig.js
+│   │   │   │   └── updateDiscoveredEndpointInCache.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── configurations.d.ts
+│   │   │   │   ├── endpointDiscoveryMiddleware.d.ts
+│   │   │   │   ├── getCacheKey.d.ts
+│   │   │   │   ├── getEndpointDiscoveryPlugin.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── resolveEndpointDiscoveryConfig.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── configurations.d.ts
+│   │   │   │   │   ├── endpointDiscoveryMiddleware.d.ts
+│   │   │   │   │   ├── getCacheKey.d.ts
+│   │   │   │   │   ├── getEndpointDiscoveryPlugin.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── resolveEndpointDiscoveryConfig.d.ts
+│   │   │   │   │   └── updateDiscoveredEndpointInCache.d.ts
+│   │   │   │   └── updateDiscoveredEndpointInCache.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-host-header
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-logger
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── index.js
+│   │   │   │   └── loggerMiddleware.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── loggerMiddleware.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── loggerMiddleware.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-recursion-detection
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-user-agent
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── configurations.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── user-agent-middleware.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── configurations.d.ts
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── configurations.d.ts
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── user-agent-middleware.d.ts
+│   │   │   │   └── user-agent-middleware.d.ts
+│   │   │   └── package.json
+│   │   ├── region-config-resolver
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── extensions
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── regionConfig
+│   │   │   │       ├── config.js
+│   │   │   │       ├── getRealRegion.js
+│   │   │   │       ├── index.js
+│   │   │   │       ├── isFipsRegion.js
+│   │   │   │       └── resolveRegionConfig.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── extensions
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── regionConfig
+│   │   │   │   │   ├── config.d.ts
+│   │   │   │   │   ├── getRealRegion.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── isFipsRegion.d.ts
+│   │   │   │   │   └── resolveRegionConfig.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── extensions
+│   │   │   │       │   └── index.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── regionConfig
+│   │   │   │           ├── config.d.ts
+│   │   │   │           ├── getRealRegion.d.ts
+│   │   │   │           ├── index.d.ts
+│   │   │   │           ├── isFipsRegion.d.ts
+│   │   │   │           └── resolveRegionConfig.d.ts
+│   │   │   └── package.json
+│   │   ├── token-providers
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── fromSso.js
+│   │   │   │   ├── fromStatic.js
+│   │   │   │   ├── getNewSsoOidcToken.js
+│   │   │   │   ├── getSsoOidcClient.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── nodeProvider.js
+│   │   │   │   ├── validateTokenExpiry.js
+│   │   │   │   ├── validateTokenKey.js
+│   │   │   │   └── writeSSOTokenToFile.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── fromSso.d.ts
+│   │   │   │   ├── fromStatic.d.ts
+│   │   │   │   ├── getNewSsoOidcToken.d.ts
+│   │   │   │   ├── getSsoOidcClient.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── nodeProvider.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── fromSso.d.ts
+│   │   │   │   │   ├── fromStatic.d.ts
+│   │   │   │   │   ├── getNewSsoOidcToken.d.ts
+│   │   │   │   │   ├── getSsoOidcClient.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── nodeProvider.d.ts
+│   │   │   │   │   ├── validateTokenExpiry.d.ts
+│   │   │   │   │   ├── validateTokenKey.d.ts
+│   │   │   │   │   └── writeSSOTokenToFile.d.ts
+│   │   │   │   ├── validateTokenExpiry.d.ts
+│   │   │   │   ├── validateTokenKey.d.ts
+│   │   │   │   └── writeSSOTokenToFile.d.ts
+│   │   │   └── package.json
+│   │   ├── types
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── abort.js
+│   │   │   │   ├── auth.js
+│   │   │   │   ├── blob
+│   │   │   │   │   └── blob-types.js
+│   │   │   │   ├── checksum.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── command.js
+│   │   │   │   ├── connection.js
+│   │   │   │   ├── credentials.js
+│   │   │   │   ├── crypto.js
+│   │   │   │   ├── dns.js
+│   │   │   │   ├── encode.js
+│   │   │   │   ├── endpoint.js
+│   │   │   │   ├── eventStream.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── http.js
+│   │   │   │   ├── identity
+│   │   │   │   │   ├── AnonymousIdentity.js
+│   │   │   │   │   ├── AwsCredentialIdentity.js
+│   │   │   │   │   ├── Identity.js
+│   │   │   │   │   ├── LoginIdentity.js
+│   │   │   │   │   ├── TokenIdentity.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── logger.js
+│   │   │   │   ├── middleware.js
+│   │   │   │   ├── pagination.js
+│   │   │   │   ├── profile.js
+│   │   │   │   ├── request.js
+│   │   │   │   ├── response.js
+│   │   │   │   ├── retry.js
+│   │   │   │   ├── serde.js
+│   │   │   │   ├── shapes.js
+│   │   │   │   ├── signature.js
+│   │   │   │   ├── stream.js
+│   │   │   │   ├── token.js
+│   │   │   │   ├── transfer.js
+│   │   │   │   ├── uri.js
+│   │   │   │   ├── util.js
+│   │   │   │   └── waiter.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── abort.d.ts
+│   │   │   │   ├── auth.d.ts
+│   │   │   │   ├── blob
+│   │   │   │   │   └── blob-types.d.ts
+│   │   │   │   ├── checksum.d.ts
+│   │   │   │   ├── client.d.ts
+│   │   │   │   ├── command.d.ts
+│   │   │   │   ├── connection.d.ts
+│   │   │   │   ├── credentials.d.ts
+│   │   │   │   ├── crypto.d.ts
+│   │   │   │   ├── dns.d.ts
+│   │   │   │   ├── encode.d.ts
+│   │   │   │   ├── endpoint.d.ts
+│   │   │   │   ├── eventStream.d.ts
+│   │   │   │   ├── extensions
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── http.d.ts
+│   │   │   │   ├── identity
+│   │   │   │   │   ├── AnonymousIdentity.d.ts
+│   │   │   │   │   ├── AwsCredentialIdentity.d.ts
+│   │   │   │   │   ├── Identity.d.ts
+│   │   │   │   │   ├── LoginIdentity.d.ts
+│   │   │   │   │   ├── TokenIdentity.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── logger.d.ts
+│   │   │   │   ├── middleware.d.ts
+│   │   │   │   ├── pagination.d.ts
+│   │   │   │   ├── profile.d.ts
+│   │   │   │   ├── request.d.ts
+│   │   │   │   ├── response.d.ts
+│   │   │   │   ├── retry.d.ts
+│   │   │   │   ├── serde.d.ts
+│   │   │   │   ├── shapes.d.ts
+│   │   │   │   ├── signature.d.ts
+│   │   │   │   ├── stream.d.ts
+│   │   │   │   ├── token.d.ts
+│   │   │   │   ├── transfer.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── abort.d.ts
+│   │   │   │   │   ├── auth.d.ts
+│   │   │   │   │   ├── blob
+│   │   │   │   │   │   └── blob-types.d.ts
+│   │   │   │   │   ├── checksum.d.ts
+│   │   │   │   │   ├── client.d.ts
+│   │   │   │   │   ├── command.d.ts
+│   │   │   │   │   ├── connection.d.ts
+│   │   │   │   │   ├── credentials.d.ts
+│   │   │   │   │   ├── crypto.d.ts
+│   │   │   │   │   ├── dns.d.ts
+│   │   │   │   │   ├── encode.d.ts
+│   │   │   │   │   ├── endpoint.d.ts
+│   │   │   │   │   ├── eventStream.d.ts
+│   │   │   │   │   ├── extensions
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── http.d.ts
+│   │   │   │   │   ├── identity
+│   │   │   │   │   │   ├── AnonymousIdentity.d.ts
+│   │   │   │   │   │   ├── AwsCredentialIdentity.d.ts
+│   │   │   │   │   │   ├── Identity.d.ts
+│   │   │   │   │   │   ├── LoginIdentity.d.ts
+│   │   │   │   │   │   ├── TokenIdentity.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── logger.d.ts
+│   │   │   │   │   ├── middleware.d.ts
+│   │   │   │   │   ├── pagination.d.ts
+│   │   │   │   │   ├── profile.d.ts
+│   │   │   │   │   ├── request.d.ts
+│   │   │   │   │   ├── response.d.ts
+│   │   │   │   │   ├── retry.d.ts
+│   │   │   │   │   ├── serde.d.ts
+│   │   │   │   │   ├── shapes.d.ts
+│   │   │   │   │   ├── signature.d.ts
+│   │   │   │   │   ├── stream.d.ts
+│   │   │   │   │   ├── token.d.ts
+│   │   │   │   │   ├── transfer.d.ts
+│   │   │   │   │   ├── uri.d.ts
+│   │   │   │   │   ├── util.d.ts
+│   │   │   │   │   └── waiter.d.ts
+│   │   │   │   ├── uri.d.ts
+│   │   │   │   ├── util.d.ts
+│   │   │   │   └── waiter.d.ts
+│   │   │   └── package.json
+│   │   ├── util-dynamodb
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── NumberValue.js
+│   │   │   │   ├── convertToAttr.js
+│   │   │   │   ├── convertToNative.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── marshall.js
+│   │   │   │   ├── models.js
+│   │   │   │   └── unmarshall.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── NumberValue.d.ts
+│   │   │   │   ├── convertToAttr.d.ts
+│   │   │   │   ├── convertToNative.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── marshall.d.ts
+│   │   │   │   ├── models.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── NumberValue.d.ts
+│   │   │   │   │   ├── convertToAttr.d.ts
+│   │   │   │   │   ├── convertToNative.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── marshall.d.ts
+│   │   │   │   │   ├── models.d.ts
+│   │   │   │   │   └── unmarshall.d.ts
+│   │   │   │   └── unmarshall.d.ts
+│   │   │   └── package.json
+│   │   ├── util-endpoints
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── index.js
+│   │   │   │   └── lib
+│   │   │   │       └── aws
+│   │   │   │           └── partitions.json
+│   │   │   ├── dist-es
+│   │   │   │   ├── aws.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── aws
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── isVirtualHostableS3Bucket.js
+│   │   │   │   │   │   ├── parseArn.js
+│   │   │   │   │   │   ├── partition.js
+│   │   │   │   │   │   └── partitions.json
+│   │   │   │   │   └── isIpAddress.js
+│   │   │   │   ├── resolveEndpoint.js
+│   │   │   │   └── types
+│   │   │   │       ├── EndpointError.js
+│   │   │   │       ├── EndpointRuleObject.js
+│   │   │   │       ├── ErrorRuleObject.js
+│   │   │   │       ├── RuleSetObject.js
+│   │   │   │       ├── TreeRuleObject.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── shared.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── aws.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── aws
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   ├── isVirtualHostableS3Bucket.d.ts
+│   │   │   │   │   │   ├── parseArn.d.ts
+│   │   │   │   │   │   └── partition.d.ts
+│   │   │   │   │   └── isIpAddress.d.ts
+│   │   │   │   ├── resolveEndpoint.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── aws.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── lib
+│   │   │   │   │   │   ├── aws
+│   │   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   │   ├── isVirtualHostableS3Bucket.d.ts
+│   │   │   │   │   │   │   ├── parseArn.d.ts
+│   │   │   │   │   │   │   └── partition.d.ts
+│   │   │   │   │   │   └── isIpAddress.d.ts
+│   │   │   │   │   ├── resolveEndpoint.d.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── EndpointError.d.ts
+│   │   │   │   │       ├── EndpointRuleObject.d.ts
+│   │   │   │   │       ├── ErrorRuleObject.d.ts
+│   │   │   │   │       ├── RuleSetObject.d.ts
+│   │   │   │   │       ├── TreeRuleObject.d.ts
+│   │   │   │   │       ├── index.d.ts
+│   │   │   │   │       └── shared.d.ts
+│   │   │   │   └── types
+│   │   │   │       ├── EndpointError.d.ts
+│   │   │   │       ├── EndpointRuleObject.d.ts
+│   │   │   │       ├── ErrorRuleObject.d.ts
+│   │   │   │       ├── RuleSetObject.d.ts
+│   │   │   │       ├── TreeRuleObject.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── shared.d.ts
+│   │   │   └── package.json
+│   │   ├── util-locate-window
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-user-agent-browser
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── configurations.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── index.native.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── configurations.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── index.native.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── configurations.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.native.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── configurations.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── index.native.d.ts
+│   │   │   └── package.json
+│   │   └── util-user-agent-node
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── dist-cjs
+│   │       │   └── index.js
+│   │       ├── dist-es
+│   │       │   ├── crt-availability.js
+│   │       │   ├── index.js
+│   │       │   └── is-crt-available.js
+│   │       ├── dist-types
+│   │       │   ├── crt-availability.d.ts
+│   │       │   ├── index.d.ts
+│   │       │   ├── is-crt-available.d.ts
+│   │       │   └── ts3.4
+│   │       │       ├── crt-availability.d.ts
+│   │       │       ├── index.d.ts
+│   │       │       └── is-crt-available.d.ts
+│   │       └── package.json
+│   ├── @smithy
+│   │   ├── abort-controller
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── AbortController.js
+│   │   │   │   ├── AbortSignal.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── AbortController.js
+│   │   │   │   ├── AbortSignal.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── AbortController.d.ts
+│   │   │   │   ├── AbortSignal.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── AbortController.d.ts
+│   │   │   │       ├── AbortSignal.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── config-resolver
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── endpointsConfig
+│   │   │   │   │   ├── NodeUseDualstackEndpointConfigOptions.js
+│   │   │   │   │   ├── NodeUseFipsEndpointConfigOptions.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── resolveCustomEndpointsConfig.js
+│   │   │   │   │   ├── resolveEndpointsConfig.js
+│   │   │   │   │   └── utils
+│   │   │   │   │       └── getEndpointFromRegion.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── regionConfig
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── getRealRegion.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── isFipsRegion.js
+│   │   │   │   │   └── resolveRegionConfig.js
+│   │   │   │   └── regionInfo
+│   │   │   │       ├── EndpointVariant.js
+│   │   │   │       ├── EndpointVariantTag.js
+│   │   │   │       ├── PartitionHash.js
+│   │   │   │       ├── RegionHash.js
+│   │   │   │       ├── getHostnameFromVariants.js
+│   │   │   │       ├── getRegionInfo.js
+│   │   │   │       ├── getResolvedHostname.js
+│   │   │   │       ├── getResolvedPartition.js
+│   │   │   │       ├── getResolvedSigningRegion.js
+│   │   │   │       └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── endpointsConfig
+│   │   │   │   │   ├── NodeUseDualstackEndpointConfigOptions.js
+│   │   │   │   │   ├── NodeUseFipsEndpointConfigOptions.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── resolveCustomEndpointsConfig.js
+│   │   │   │   │   ├── resolveEndpointsConfig.js
+│   │   │   │   │   └── utils
+│   │   │   │   │       └── getEndpointFromRegion.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── regionConfig
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── getRealRegion.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── isFipsRegion.js
+│   │   │   │   │   └── resolveRegionConfig.js
+│   │   │   │   └── regionInfo
+│   │   │   │       ├── EndpointVariant.js
+│   │   │   │       ├── EndpointVariantTag.js
+│   │   │   │       ├── PartitionHash.js
+│   │   │   │       ├── RegionHash.js
+│   │   │   │       ├── getHostnameFromVariants.js
+│   │   │   │       ├── getRegionInfo.js
+│   │   │   │       ├── getResolvedHostname.js
+│   │   │   │       ├── getResolvedPartition.js
+│   │   │   │       ├── getResolvedSigningRegion.js
+│   │   │   │       └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── endpointsConfig
+│   │   │   │   │   ├── NodeUseDualstackEndpointConfigOptions.d.ts
+│   │   │   │   │   ├── NodeUseFipsEndpointConfigOptions.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── resolveCustomEndpointsConfig.d.ts
+│   │   │   │   │   ├── resolveEndpointsConfig.d.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       └── getEndpointFromRegion.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── regionConfig
+│   │   │   │   │   ├── config.d.ts
+│   │   │   │   │   ├── getRealRegion.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── isFipsRegion.d.ts
+│   │   │   │   │   └── resolveRegionConfig.d.ts
+│   │   │   │   ├── regionInfo
+│   │   │   │   │   ├── EndpointVariant.d.ts
+│   │   │   │   │   ├── EndpointVariantTag.d.ts
+│   │   │   │   │   ├── PartitionHash.d.ts
+│   │   │   │   │   ├── RegionHash.d.ts
+│   │   │   │   │   ├── getHostnameFromVariants.d.ts
+│   │   │   │   │   ├── getRegionInfo.d.ts
+│   │   │   │   │   ├── getResolvedHostname.d.ts
+│   │   │   │   │   ├── getResolvedPartition.d.ts
+│   │   │   │   │   ├── getResolvedSigningRegion.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── endpointsConfig
+│   │   │   │       │   ├── NodeUseDualstackEndpointConfigOptions.d.ts
+│   │   │   │       │   ├── NodeUseFipsEndpointConfigOptions.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   ├── resolveCustomEndpointsConfig.d.ts
+│   │   │   │       │   ├── resolveEndpointsConfig.d.ts
+│   │   │   │       │   └── utils
+│   │   │   │       │       └── getEndpointFromRegion.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── regionConfig
+│   │   │   │       │   ├── config.d.ts
+│   │   │   │       │   ├── getRealRegion.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   ├── isFipsRegion.d.ts
+│   │   │   │       │   └── resolveRegionConfig.d.ts
+│   │   │   │       └── regionInfo
+│   │   │   │           ├── EndpointVariant.d.ts
+│   │   │   │           ├── EndpointVariantTag.d.ts
+│   │   │   │           ├── PartitionHash.d.ts
+│   │   │   │           ├── RegionHash.d.ts
+│   │   │   │           ├── getHostnameFromVariants.d.ts
+│   │   │   │           ├── getRegionInfo.d.ts
+│   │   │   │           ├── getResolvedHostname.d.ts
+│   │   │   │           ├── getResolvedPartition.d.ts
+│   │   │   │           ├── getResolvedSigningRegion.d.ts
+│   │   │   │           └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── core
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── getSmithyContext.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── middleware-http-auth-scheme
+│   │   │   │   │   ├── getHttpAuthSchemeEndpointRuleSetPlugin.js
+│   │   │   │   │   ├── getHttpAuthSchemePlugin.js
+│   │   │   │   │   ├── httpAuthSchemeMiddleware.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── middleware-http-signing
+│   │   │   │   │   ├── getHttpSigningMiddleware.js
+│   │   │   │   │   ├── httpSigningMiddleware.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── normalizeProvider.js
+│   │   │   │   ├── pagination
+│   │   │   │   │   └── createPaginator.js
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── requestBuilder.js
+│   │   │   │   └── util-identity-and-auth
+│   │   │   │       ├── DefaultIdentityProviderConfig.js
+│   │   │   │       ├── httpAuthSchemes
+│   │   │   │       │   ├── httpApiKeyAuth.js
+│   │   │   │       │   ├── httpBearerAuth.js
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   └── noAuth.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── memoizeIdentityProvider.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── getSmithyContext.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── middleware-http-auth-scheme
+│   │   │   │   │   ├── getHttpAuthSchemeEndpointRuleSetPlugin.js
+│   │   │   │   │   ├── getHttpAuthSchemePlugin.js
+│   │   │   │   │   ├── httpAuthSchemeMiddleware.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── middleware-http-signing
+│   │   │   │   │   ├── getHttpSigningMiddleware.js
+│   │   │   │   │   ├── httpSigningMiddleware.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── normalizeProvider.js
+│   │   │   │   ├── pagination
+│   │   │   │   │   └── createPaginator.js
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── requestBuilder.js
+│   │   │   │   └── util-identity-and-auth
+│   │   │   │       ├── DefaultIdentityProviderConfig.js
+│   │   │   │       ├── httpAuthSchemes
+│   │   │   │       │   ├── httpApiKeyAuth.js
+│   │   │   │       │   ├── httpBearerAuth.js
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   └── noAuth.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── memoizeIdentityProvider.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── getSmithyContext.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── middleware-http-auth-scheme
+│   │   │   │   │   ├── getHttpAuthSchemeEndpointRuleSetPlugin.d.ts
+│   │   │   │   │   ├── getHttpAuthSchemePlugin.d.ts
+│   │   │   │   │   ├── httpAuthSchemeMiddleware.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── middleware-http-signing
+│   │   │   │   │   ├── getHttpSigningMiddleware.d.ts
+│   │   │   │   │   ├── httpSigningMiddleware.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── normalizeProvider.d.ts
+│   │   │   │   ├── pagination
+│   │   │   │   │   └── createPaginator.d.ts
+│   │   │   │   ├── protocols
+│   │   │   │   │   └── requestBuilder.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── getSmithyContext.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── middleware-http-auth-scheme
+│   │   │   │   │   │   ├── getHttpAuthSchemeEndpointRuleSetPlugin.d.ts
+│   │   │   │   │   │   ├── getHttpAuthSchemePlugin.d.ts
+│   │   │   │   │   │   ├── httpAuthSchemeMiddleware.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── middleware-http-signing
+│   │   │   │   │   │   ├── getHttpSigningMiddleware.d.ts
+│   │   │   │   │   │   ├── httpSigningMiddleware.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── normalizeProvider.d.ts
+│   │   │   │   │   ├── pagination
+│   │   │   │   │   │   └── createPaginator.d.ts
+│   │   │   │   │   ├── protocols
+│   │   │   │   │   │   └── requestBuilder.d.ts
+│   │   │   │   │   └── util-identity-and-auth
+│   │   │   │   │       ├── DefaultIdentityProviderConfig.d.ts
+│   │   │   │   │       ├── httpAuthSchemes
+│   │   │   │   │       │   ├── httpApiKeyAuth.d.ts
+│   │   │   │   │       │   ├── httpBearerAuth.d.ts
+│   │   │   │   │       │   ├── index.d.ts
+│   │   │   │   │       │   └── noAuth.d.ts
+│   │   │   │   │       ├── index.d.ts
+│   │   │   │   │       └── memoizeIdentityProvider.d.ts
+│   │   │   │   └── util-identity-and-auth
+│   │   │   │       ├── DefaultIdentityProviderConfig.d.ts
+│   │   │   │       ├── httpAuthSchemes
+│   │   │   │       │   ├── httpApiKeyAuth.d.ts
+│   │   │   │       │   ├── httpBearerAuth.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   └── noAuth.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── memoizeIdentityProvider.d.ts
+│   │   │   └── package.json
+│   │   ├── credential-provider-imds
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── config
+│   │   │   │   │   ├── Endpoint.js
+│   │   │   │   │   ├── EndpointConfigOptions.js
+│   │   │   │   │   ├── EndpointMode.js
+│   │   │   │   │   └── EndpointModeConfigOptions.js
+│   │   │   │   ├── error
+│   │   │   │   │   └── InstanceMetadataV1FallbackError.js
+│   │   │   │   ├── fromContainerMetadata.js
+│   │   │   │   ├── fromInstanceMetadata.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── remoteProvider
+│   │   │   │   │   ├── ImdsCredentials.js
+│   │   │   │   │   ├── RemoteProviderInit.js
+│   │   │   │   │   ├── httpRequest.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── retry.js
+│   │   │   │   ├── types.js
+│   │   │   │   └── utils
+│   │   │   │       ├── getExtendedInstanceMetadataCredentials.js
+│   │   │   │       ├── getInstanceMetadataEndpoint.js
+│   │   │   │       └── staticStabilityProvider.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── config
+│   │   │   │   │   ├── Endpoint.js
+│   │   │   │   │   ├── EndpointConfigOptions.js
+│   │   │   │   │   ├── EndpointMode.js
+│   │   │   │   │   └── EndpointModeConfigOptions.js
+│   │   │   │   ├── error
+│   │   │   │   │   └── InstanceMetadataV1FallbackError.js
+│   │   │   │   ├── fromContainerMetadata.js
+│   │   │   │   ├── fromInstanceMetadata.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── remoteProvider
+│   │   │   │   │   ├── ImdsCredentials.js
+│   │   │   │   │   ├── RemoteProviderInit.js
+│   │   │   │   │   ├── httpRequest.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── retry.js
+│   │   │   │   ├── types.js
+│   │   │   │   └── utils
+│   │   │   │       ├── getExtendedInstanceMetadataCredentials.js
+│   │   │   │       ├── getInstanceMetadataEndpoint.js
+│   │   │   │       └── staticStabilityProvider.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── config
+│   │   │   │   │   ├── Endpoint.d.ts
+│   │   │   │   │   ├── EndpointConfigOptions.d.ts
+│   │   │   │   │   ├── EndpointMode.d.ts
+│   │   │   │   │   └── EndpointModeConfigOptions.d.ts
+│   │   │   │   ├── error
+│   │   │   │   │   └── InstanceMetadataV1FallbackError.d.ts
+│   │   │   │   ├── fromContainerMetadata.d.ts
+│   │   │   │   ├── fromInstanceMetadata.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── remoteProvider
+│   │   │   │   │   ├── ImdsCredentials.d.ts
+│   │   │   │   │   ├── RemoteProviderInit.d.ts
+│   │   │   │   │   ├── httpRequest.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── retry.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   ├── Endpoint.d.ts
+│   │   │   │   │   │   ├── EndpointConfigOptions.d.ts
+│   │   │   │   │   │   ├── EndpointMode.d.ts
+│   │   │   │   │   │   └── EndpointModeConfigOptions.d.ts
+│   │   │   │   │   ├── error
+│   │   │   │   │   │   └── InstanceMetadataV1FallbackError.d.ts
+│   │   │   │   │   ├── fromContainerMetadata.d.ts
+│   │   │   │   │   ├── fromInstanceMetadata.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── remoteProvider
+│   │   │   │   │   │   ├── ImdsCredentials.d.ts
+│   │   │   │   │   │   ├── RemoteProviderInit.d.ts
+│   │   │   │   │   │   ├── httpRequest.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── retry.d.ts
+│   │   │   │   │   ├── types.d.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       ├── getExtendedInstanceMetadataCredentials.d.ts
+│   │   │   │   │       ├── getInstanceMetadataEndpoint.d.ts
+│   │   │   │   │       └── staticStabilityProvider.d.ts
+│   │   │   │   ├── types.d.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── getExtendedInstanceMetadataCredentials.d.ts
+│   │   │   │       ├── getInstanceMetadataEndpoint.d.ts
+│   │   │   │       └── staticStabilityProvider.d.ts
+│   │   │   └── package.json
+│   │   ├── fetch-http-handler
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── fetch-http-handler.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── request-timeout.js
+│   │   │   │   └── stream-collector.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fetch-http-handler.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── request-timeout.js
+│   │   │   │   └── stream-collector.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fetch-http-handler.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── request-timeout.d.ts
+│   │   │   │   ├── stream-collector.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── fetch-http-handler.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── request-timeout.d.ts
+│   │   │   │       └── stream-collector.d.ts
+│   │   │   └── package.json
+│   │   ├── hash-node
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── invalid-dependency
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── index.js
+│   │   │   │   ├── invalidFunction.js
+│   │   │   │   └── invalidProvider.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── index.js
+│   │   │   │   ├── invalidFunction.js
+│   │   │   │   └── invalidProvider.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── invalidFunction.d.ts
+│   │   │   │   ├── invalidProvider.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── invalidFunction.d.ts
+│   │   │   │       └── invalidProvider.d.ts
+│   │   │   └── package.json
+│   │   ├── is-array-buffer
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-content-length
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-endpoint
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── adaptors
+│   │   │   │   │   ├── createConfigValueProvider.js
+│   │   │   │   │   ├── getEndpointFromConfig.browser.js
+│   │   │   │   │   ├── getEndpointFromConfig.js
+│   │   │   │   │   ├── getEndpointFromInstructions.js
+│   │   │   │   │   ├── getEndpointUrlConfig.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── toEndpointV1.js
+│   │   │   │   ├── endpointMiddleware.js
+│   │   │   │   ├── getEndpointPlugin.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── resolveEndpointConfig.js
+│   │   │   │   ├── service-customizations
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── s3.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── adaptors
+│   │   │   │   │   ├── createConfigValueProvider.js
+│   │   │   │   │   ├── getEndpointFromConfig.browser.js
+│   │   │   │   │   ├── getEndpointFromConfig.js
+│   │   │   │   │   ├── getEndpointFromInstructions.js
+│   │   │   │   │   ├── getEndpointUrlConfig.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── toEndpointV1.js
+│   │   │   │   ├── endpointMiddleware.js
+│   │   │   │   ├── getEndpointPlugin.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── resolveEndpointConfig.js
+│   │   │   │   ├── service-customizations
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── s3.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── adaptors
+│   │   │   │   │   ├── createConfigValueProvider.d.ts
+│   │   │   │   │   ├── getEndpointFromConfig.browser.d.ts
+│   │   │   │   │   ├── getEndpointFromConfig.d.ts
+│   │   │   │   │   ├── getEndpointFromInstructions.d.ts
+│   │   │   │   │   ├── getEndpointUrlConfig.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── toEndpointV1.d.ts
+│   │   │   │   ├── endpointMiddleware.d.ts
+│   │   │   │   ├── getEndpointPlugin.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── resolveEndpointConfig.d.ts
+│   │   │   │   ├── service-customizations
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── s3.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── adaptors
+│   │   │   │   │   │   ├── createConfigValueProvider.d.ts
+│   │   │   │   │   │   ├── getEndpointFromConfig.browser.d.ts
+│   │   │   │   │   │   ├── getEndpointFromConfig.d.ts
+│   │   │   │   │   │   ├── getEndpointFromInstructions.d.ts
+│   │   │   │   │   │   ├── getEndpointUrlConfig.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── toEndpointV1.d.ts
+│   │   │   │   │   ├── endpointMiddleware.d.ts
+│   │   │   │   │   ├── getEndpointPlugin.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── resolveEndpointConfig.d.ts
+│   │   │   │   │   ├── service-customizations
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── s3.d.ts
+│   │   │   │   │   └── types.d.ts
+│   │   │   │   └── types.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-retry
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── AdaptiveRetryStrategy.js
+│   │   │   │   ├── StandardRetryStrategy.js
+│   │   │   │   ├── configurations.js
+│   │   │   │   ├── defaultRetryQuota.js
+│   │   │   │   ├── delayDecider.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── isStreamingPayload
+│   │   │   │   │   ├── isStreamingPayload.browser.js
+│   │   │   │   │   └── isStreamingPayload.js
+│   │   │   │   ├── omitRetryHeadersMiddleware.js
+│   │   │   │   ├── retryDecider.js
+│   │   │   │   ├── retryMiddleware.js
+│   │   │   │   ├── types.js
+│   │   │   │   └── util.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── AdaptiveRetryStrategy.js
+│   │   │   │   ├── StandardRetryStrategy.js
+│   │   │   │   ├── configurations.js
+│   │   │   │   ├── defaultRetryQuota.js
+│   │   │   │   ├── delayDecider.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── isStreamingPayload
+│   │   │   │   │   ├── isStreamingPayload.browser.js
+│   │   │   │   │   └── isStreamingPayload.js
+│   │   │   │   ├── omitRetryHeadersMiddleware.js
+│   │   │   │   ├── retryDecider.js
+│   │   │   │   ├── retryMiddleware.js
+│   │   │   │   ├── types.js
+│   │   │   │   └── util.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── AdaptiveRetryStrategy.d.ts
+│   │   │   │   ├── StandardRetryStrategy.d.ts
+│   │   │   │   ├── configurations.d.ts
+│   │   │   │   ├── defaultRetryQuota.d.ts
+│   │   │   │   ├── delayDecider.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── isStreamingPayload
+│   │   │   │   │   ├── isStreamingPayload.browser.d.ts
+│   │   │   │   │   └── isStreamingPayload.d.ts
+│   │   │   │   ├── omitRetryHeadersMiddleware.d.ts
+│   │   │   │   ├── retryDecider.d.ts
+│   │   │   │   ├── retryMiddleware.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── AdaptiveRetryStrategy.d.ts
+│   │   │   │   │   ├── StandardRetryStrategy.d.ts
+│   │   │   │   │   ├── configurations.d.ts
+│   │   │   │   │   ├── defaultRetryQuota.d.ts
+│   │   │   │   │   ├── delayDecider.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── isStreamingPayload
+│   │   │   │   │   │   ├── isStreamingPayload.browser.d.ts
+│   │   │   │   │   │   └── isStreamingPayload.d.ts
+│   │   │   │   │   ├── omitRetryHeadersMiddleware.d.ts
+│   │   │   │   │   ├── retryDecider.d.ts
+│   │   │   │   │   ├── retryMiddleware.d.ts
+│   │   │   │   │   ├── types.d.ts
+│   │   │   │   │   └── util.d.ts
+│   │   │   │   ├── types.d.ts
+│   │   │   │   └── util.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-serde
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── deserializerMiddleware.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── serdePlugin.js
+│   │   │   │   └── serializerMiddleware.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── deserializerMiddleware.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── serdePlugin.js
+│   │   │   │   └── serializerMiddleware.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── deserializerMiddleware.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── serdePlugin.d.ts
+│   │   │   │   ├── serializerMiddleware.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── deserializerMiddleware.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── serdePlugin.d.ts
+│   │   │   │       └── serializerMiddleware.d.ts
+│   │   │   └── package.json
+│   │   ├── middleware-stack
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── MiddlewareStack.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── MiddlewareStack.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── MiddlewareStack.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── MiddlewareStack.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── types.d.ts
+│   │   │   │   └── types.d.ts
+│   │   │   └── package.json
+│   │   ├── node-config-provider
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── configLoader.js
+│   │   │   │   ├── fromEnv.js
+│   │   │   │   ├── fromSharedConfigFiles.js
+│   │   │   │   ├── fromStatic.js
+│   │   │   │   ├── getSelectorName.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── configLoader.js
+│   │   │   │   ├── fromEnv.js
+│   │   │   │   ├── fromSharedConfigFiles.js
+│   │   │   │   ├── fromStatic.js
+│   │   │   │   ├── getSelectorName.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── configLoader.d.ts
+│   │   │   │   ├── fromEnv.d.ts
+│   │   │   │   ├── fromSharedConfigFiles.d.ts
+│   │   │   │   ├── fromStatic.d.ts
+│   │   │   │   ├── getSelectorName.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── configLoader.d.ts
+│   │   │   │       ├── fromEnv.d.ts
+│   │   │   │       ├── fromSharedConfigFiles.d.ts
+│   │   │   │       ├── fromStatic.d.ts
+│   │   │   │       ├── getSelectorName.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── node-http-handler
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── get-transformed-headers.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── node-http-handler.js
+│   │   │   │   ├── node-http2-connection-manager.js
+│   │   │   │   ├── node-http2-connection-pool.js
+│   │   │   │   ├── node-http2-handler.js
+│   │   │   │   ├── readable.mock.js
+│   │   │   │   ├── server.mock.js
+│   │   │   │   ├── set-connection-timeout.js
+│   │   │   │   ├── set-socket-keep-alive.js
+│   │   │   │   ├── set-socket-timeout.js
+│   │   │   │   ├── stream-collector
+│   │   │   │   │   ├── collector.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── readable.mock.js
+│   │   │   │   └── write-request-body.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── get-transformed-headers.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── node-http-handler.js
+│   │   │   │   ├── node-http2-connection-manager.js
+│   │   │   │   ├── node-http2-connection-pool.js
+│   │   │   │   ├── node-http2-handler.js
+│   │   │   │   ├── readable.mock.js
+│   │   │   │   ├── server.mock.js
+│   │   │   │   ├── set-connection-timeout.js
+│   │   │   │   ├── set-socket-keep-alive.js
+│   │   │   │   ├── set-socket-timeout.js
+│   │   │   │   ├── stream-collector
+│   │   │   │   │   ├── collector.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── readable.mock.js
+│   │   │   │   └── write-request-body.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── get-transformed-headers.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── node-http-handler.d.ts
+│   │   │   │   ├── node-http2-connection-manager.d.ts
+│   │   │   │   ├── node-http2-connection-pool.d.ts
+│   │   │   │   ├── node-http2-handler.d.ts
+│   │   │   │   ├── readable.mock.d.ts
+│   │   │   │   ├── server.mock.d.ts
+│   │   │   │   ├── set-connection-timeout.d.ts
+│   │   │   │   ├── set-socket-keep-alive.d.ts
+│   │   │   │   ├── set-socket-timeout.d.ts
+│   │   │   │   ├── stream-collector
+│   │   │   │   │   ├── collector.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── readable.mock.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── get-transformed-headers.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── node-http-handler.d.ts
+│   │   │   │   │   ├── node-http2-connection-manager.d.ts
+│   │   │   │   │   ├── node-http2-connection-pool.d.ts
+│   │   │   │   │   ├── node-http2-handler.d.ts
+│   │   │   │   │   ├── readable.mock.d.ts
+│   │   │   │   │   ├── server.mock.d.ts
+│   │   │   │   │   ├── set-connection-timeout.d.ts
+│   │   │   │   │   ├── set-socket-keep-alive.d.ts
+│   │   │   │   │   ├── set-socket-timeout.d.ts
+│   │   │   │   │   ├── stream-collector
+│   │   │   │   │   │   ├── collector.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── readable.mock.d.ts
+│   │   │   │   │   └── write-request-body.d.ts
+│   │   │   │   └── write-request-body.d.ts
+│   │   │   └── package.json
+│   │   ├── property-provider
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── CredentialsProviderError.js
+│   │   │   │   ├── ProviderError.js
+│   │   │   │   ├── TokenProviderError.js
+│   │   │   │   ├── chain.js
+│   │   │   │   ├── fromStatic.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── memoize.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── CredentialsProviderError.js
+│   │   │   │   ├── ProviderError.js
+│   │   │   │   ├── TokenProviderError.js
+│   │   │   │   ├── chain.js
+│   │   │   │   ├── fromStatic.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── memoize.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── CredentialsProviderError.d.ts
+│   │   │   │   ├── ProviderError.d.ts
+│   │   │   │   ├── TokenProviderError.d.ts
+│   │   │   │   ├── chain.d.ts
+│   │   │   │   ├── fromStatic.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── memoize.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── CredentialsProviderError.d.ts
+│   │   │   │       ├── ProviderError.d.ts
+│   │   │   │       ├── TokenProviderError.d.ts
+│   │   │   │       ├── chain.d.ts
+│   │   │   │       ├── fromStatic.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── memoize.d.ts
+│   │   │   └── package.json
+│   │   ├── protocol-http
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── Field.js
+│   │   │   │   ├── Fields.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── httpExtensionConfiguration.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── httpHandler.js
+│   │   │   │   ├── httpRequest.js
+│   │   │   │   ├── httpResponse.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── isValidHostname.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── Field.js
+│   │   │   │   ├── Fields.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── httpExtensionConfiguration.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── httpHandler.js
+│   │   │   │   ├── httpRequest.js
+│   │   │   │   ├── httpResponse.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── isValidHostname.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── Field.d.ts
+│   │   │   │   ├── Fields.d.ts
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── httpExtensionConfiguration.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── httpHandler.d.ts
+│   │   │   │   ├── httpRequest.d.ts
+│   │   │   │   ├── httpResponse.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── isValidHostname.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── Field.d.ts
+│   │   │   │   │   ├── Fields.d.ts
+│   │   │   │   │   ├── extensions
+│   │   │   │   │   │   ├── httpExtensionConfiguration.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── httpHandler.d.ts
+│   │   │   │   │   ├── httpRequest.d.ts
+│   │   │   │   │   ├── httpResponse.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── isValidHostname.d.ts
+│   │   │   │   │   └── types.d.ts
+│   │   │   │   └── types.d.ts
+│   │   │   └── package.json
+│   │   ├── querystring-builder
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── querystring-parser
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── service-error-classification
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── constants.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── constants.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── constants.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── shared-ini-file-loader
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── getConfigData.js
+│   │   │   │   ├── getConfigFilepath.js
+│   │   │   │   ├── getCredentialsFilepath.js
+│   │   │   │   ├── getHomeDir.js
+│   │   │   │   ├── getProfileName.js
+│   │   │   │   ├── getSSOTokenFilepath.js
+│   │   │   │   ├── getSSOTokenFromFile.js
+│   │   │   │   ├── getSsoSessionData.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── loadSharedConfigFiles.js
+│   │   │   │   ├── loadSsoSessionData.js
+│   │   │   │   ├── mergeConfigFiles.js
+│   │   │   │   ├── parseIni.js
+│   │   │   │   ├── parseKnownFiles.js
+│   │   │   │   ├── slurpFile.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── getConfigData.js
+│   │   │   │   ├── getConfigFilepath.js
+│   │   │   │   ├── getCredentialsFilepath.js
+│   │   │   │   ├── getHomeDir.js
+│   │   │   │   ├── getProfileName.js
+│   │   │   │   ├── getSSOTokenFilepath.js
+│   │   │   │   ├── getSSOTokenFromFile.js
+│   │   │   │   ├── getSsoSessionData.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── loadSharedConfigFiles.js
+│   │   │   │   ├── loadSsoSessionData.js
+│   │   │   │   ├── mergeConfigFiles.js
+│   │   │   │   ├── parseIni.js
+│   │   │   │   ├── parseKnownFiles.js
+│   │   │   │   ├── slurpFile.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── getConfigData.d.ts
+│   │   │   │   ├── getConfigFilepath.d.ts
+│   │   │   │   ├── getCredentialsFilepath.d.ts
+│   │   │   │   ├── getHomeDir.d.ts
+│   │   │   │   ├── getProfileName.d.ts
+│   │   │   │   ├── getSSOTokenFilepath.d.ts
+│   │   │   │   ├── getSSOTokenFromFile.d.ts
+│   │   │   │   ├── getSsoSessionData.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── loadSharedConfigFiles.d.ts
+│   │   │   │   ├── loadSsoSessionData.d.ts
+│   │   │   │   ├── mergeConfigFiles.d.ts
+│   │   │   │   ├── parseIni.d.ts
+│   │   │   │   ├── parseKnownFiles.d.ts
+│   │   │   │   ├── slurpFile.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── getConfigData.d.ts
+│   │   │   │   │   ├── getConfigFilepath.d.ts
+│   │   │   │   │   ├── getCredentialsFilepath.d.ts
+│   │   │   │   │   ├── getHomeDir.d.ts
+│   │   │   │   │   ├── getProfileName.d.ts
+│   │   │   │   │   ├── getSSOTokenFilepath.d.ts
+│   │   │   │   │   ├── getSSOTokenFromFile.d.ts
+│   │   │   │   │   ├── getSsoSessionData.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── loadSharedConfigFiles.d.ts
+│   │   │   │   │   ├── loadSsoSessionData.d.ts
+│   │   │   │   │   ├── mergeConfigFiles.d.ts
+│   │   │   │   │   ├── parseIni.d.ts
+│   │   │   │   │   ├── parseKnownFiles.d.ts
+│   │   │   │   │   ├── slurpFile.d.ts
+│   │   │   │   │   └── types.d.ts
+│   │   │   │   └── types.d.ts
+│   │   │   └── package.json
+│   │   ├── signature-v4
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── HeaderFormatter.js
+│   │   │   │   ├── SignatureV4.js
+│   │   │   │   ├── cloneRequest.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── credentialDerivation.js
+│   │   │   │   ├── getCanonicalHeaders.js
+│   │   │   │   ├── getCanonicalQuery.js
+│   │   │   │   ├── getPayloadHash.js
+│   │   │   │   ├── headerUtil.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── moveHeadersToQuery.js
+│   │   │   │   ├── prepareRequest.js
+│   │   │   │   ├── suite.fixture.js
+│   │   │   │   └── utilDate.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── HeaderFormatter.js
+│   │   │   │   ├── SignatureV4.js
+│   │   │   │   ├── cloneRequest.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── credentialDerivation.js
+│   │   │   │   ├── getCanonicalHeaders.js
+│   │   │   │   ├── getCanonicalQuery.js
+│   │   │   │   ├── getPayloadHash.js
+│   │   │   │   ├── headerUtil.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── moveHeadersToQuery.js
+│   │   │   │   ├── prepareRequest.js
+│   │   │   │   ├── suite.fixture.js
+│   │   │   │   └── utilDate.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── HeaderFormatter.d.ts
+│   │   │   │   ├── SignatureV4.d.ts
+│   │   │   │   ├── cloneRequest.d.ts
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── credentialDerivation.d.ts
+│   │   │   │   ├── getCanonicalHeaders.d.ts
+│   │   │   │   ├── getCanonicalQuery.d.ts
+│   │   │   │   ├── getPayloadHash.d.ts
+│   │   │   │   ├── headerUtil.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── moveHeadersToQuery.d.ts
+│   │   │   │   ├── prepareRequest.d.ts
+│   │   │   │   ├── suite.fixture.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── HeaderFormatter.d.ts
+│   │   │   │   │   ├── SignatureV4.d.ts
+│   │   │   │   │   ├── cloneRequest.d.ts
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── credentialDerivation.d.ts
+│   │   │   │   │   ├── getCanonicalHeaders.d.ts
+│   │   │   │   │   ├── getCanonicalQuery.d.ts
+│   │   │   │   │   ├── getPayloadHash.d.ts
+│   │   │   │   │   ├── headerUtil.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── moveHeadersToQuery.d.ts
+│   │   │   │   │   ├── prepareRequest.d.ts
+│   │   │   │   │   ├── suite.fixture.d.ts
+│   │   │   │   │   └── utilDate.d.ts
+│   │   │   │   └── utilDate.d.ts
+│   │   │   └── package.json
+│   │   ├── smithy-client
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── NoOpLogger.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── collect-stream-body.js
+│   │   │   │   ├── command.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── create-aggregated-client.js
+│   │   │   │   ├── date-utils.js
+│   │   │   │   ├── default-error-handler.js
+│   │   │   │   ├── defaults-mode.js
+│   │   │   │   ├── emitWarningIfUnsupportedVersion.js
+│   │   │   │   ├── exceptions.js
+│   │   │   │   ├── extended-encode-uri-component.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── checksum.js
+│   │   │   │   │   ├── defaultExtensionConfiguration.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── retry.js
+│   │   │   │   ├── get-array-if-single-item.js
+│   │   │   │   ├── get-value-from-text-node.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── lazy-json.js
+│   │   │   │   ├── object-mapping.js
+│   │   │   │   ├── parse-utils.js
+│   │   │   │   ├── resolve-path.js
+│   │   │   │   ├── ser-utils.js
+│   │   │   │   ├── serde-json.js
+│   │   │   │   └── split-every.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── NoOpLogger.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── collect-stream-body.js
+│   │   │   │   ├── command.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── create-aggregated-client.js
+│   │   │   │   ├── date-utils.js
+│   │   │   │   ├── default-error-handler.js
+│   │   │   │   ├── defaults-mode.js
+│   │   │   │   ├── emitWarningIfUnsupportedVersion.js
+│   │   │   │   ├── exceptions.js
+│   │   │   │   ├── extended-encode-uri-component.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── checksum.js
+│   │   │   │   │   ├── defaultExtensionConfiguration.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── retry.js
+│   │   │   │   ├── get-array-if-single-item.js
+│   │   │   │   ├── get-value-from-text-node.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── lazy-json.js
+│   │   │   │   ├── object-mapping.js
+│   │   │   │   ├── parse-utils.js
+│   │   │   │   ├── resolve-path.js
+│   │   │   │   ├── ser-utils.js
+│   │   │   │   ├── serde-json.js
+│   │   │   │   └── split-every.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── NoOpLogger.d.ts
+│   │   │   │   ├── client.d.ts
+│   │   │   │   ├── collect-stream-body.d.ts
+│   │   │   │   ├── command.d.ts
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── create-aggregated-client.d.ts
+│   │   │   │   ├── date-utils.d.ts
+│   │   │   │   ├── default-error-handler.d.ts
+│   │   │   │   ├── defaults-mode.d.ts
+│   │   │   │   ├── emitWarningIfUnsupportedVersion.d.ts
+│   │   │   │   ├── exceptions.d.ts
+│   │   │   │   ├── extended-encode-uri-component.d.ts
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── checksum.d.ts
+│   │   │   │   │   ├── defaultExtensionConfiguration.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── retry.d.ts
+│   │   │   │   ├── get-array-if-single-item.d.ts
+│   │   │   │   ├── get-value-from-text-node.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── lazy-json.d.ts
+│   │   │   │   ├── object-mapping.d.ts
+│   │   │   │   ├── parse-utils.d.ts
+│   │   │   │   ├── resolve-path.d.ts
+│   │   │   │   ├── ser-utils.d.ts
+│   │   │   │   ├── serde-json.d.ts
+│   │   │   │   ├── split-every.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── NoOpLogger.d.ts
+│   │   │   │       ├── client.d.ts
+│   │   │   │       ├── collect-stream-body.d.ts
+│   │   │   │       ├── command.d.ts
+│   │   │   │       ├── constants.d.ts
+│   │   │   │       ├── create-aggregated-client.d.ts
+│   │   │   │       ├── date-utils.d.ts
+│   │   │   │       ├── default-error-handler.d.ts
+│   │   │   │       ├── defaults-mode.d.ts
+│   │   │   │       ├── emitWarningIfUnsupportedVersion.d.ts
+│   │   │   │       ├── exceptions.d.ts
+│   │   │   │       ├── extended-encode-uri-component.d.ts
+│   │   │   │       ├── extensions
+│   │   │   │       │   ├── checksum.d.ts
+│   │   │   │       │   ├── defaultExtensionConfiguration.d.ts
+│   │   │   │       │   ├── index.d.ts
+│   │   │   │       │   └── retry.d.ts
+│   │   │   │       ├── get-array-if-single-item.d.ts
+│   │   │   │       ├── get-value-from-text-node.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── lazy-json.d.ts
+│   │   │   │       ├── object-mapping.d.ts
+│   │   │   │       ├── parse-utils.d.ts
+│   │   │   │       ├── resolve-path.d.ts
+│   │   │   │       ├── ser-utils.d.ts
+│   │   │   │       ├── serde-json.d.ts
+│   │   │   │       └── split-every.d.ts
+│   │   │   └── package.json
+│   │   ├── types
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── abort-handler.js
+│   │   │   │   ├── abort.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── HttpApiKeyAuth.js
+│   │   │   │   │   ├── HttpAuthScheme.js
+│   │   │   │   │   ├── HttpAuthSchemeProvider.js
+│   │   │   │   │   ├── HttpSigner.js
+│   │   │   │   │   ├── IdentityProviderConfig.js
+│   │   │   │   │   ├── auth.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── blob
+│   │   │   │   │   └── blob-payload-input-types.js
+│   │   │   │   ├── checksum.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── command.js
+│   │   │   │   ├── connection
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── manager.js
+│   │   │   │   │   └── pool.js
+│   │   │   │   ├── crypto.js
+│   │   │   │   ├── downlevel-ts3.4
+│   │   │   │   │   └── transform
+│   │   │   │   │       └── type-transform.js
+│   │   │   │   ├── encode.js
+│   │   │   │   ├── endpoint.js
+│   │   │   │   ├── endpoints
+│   │   │   │   │   ├── EndpointRuleObject.js
+│   │   │   │   │   ├── ErrorRuleObject.js
+│   │   │   │   │   ├── RuleSetObject.js
+│   │   │   │   │   ├── TreeRuleObject.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── shared.js
+│   │   │   │   ├── eventStream.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── checksum.js
+│   │   │   │   │   ├── defaultClientConfiguration.js
+│   │   │   │   │   ├── defaultExtensionConfiguration.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── retry.js
+│   │   │   │   ├── externals-check
+│   │   │   │   │   └── browser-externals-check.js
+│   │   │   │   ├── http
+│   │   │   │   │   └── httpHandlerInitialization.js
+│   │   │   │   ├── http.js
+│   │   │   │   ├── identity
+│   │   │   │   │   ├── apiKeyIdentity.js
+│   │   │   │   │   ├── awsCredentialIdentity.js
+│   │   │   │   │   ├── identity.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── tokenIdentity.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── logger.js
+│   │   │   │   ├── middleware.js
+│   │   │   │   ├── pagination.js
+│   │   │   │   ├── profile.js
+│   │   │   │   ├── response.js
+│   │   │   │   ├── retry.js
+│   │   │   │   ├── serde.js
+│   │   │   │   ├── shapes.js
+│   │   │   │   ├── signature.js
+│   │   │   │   ├── stream.js
+│   │   │   │   ├── streaming-payload
+│   │   │   │   │   ├── streaming-blob-common-types.js
+│   │   │   │   │   ├── streaming-blob-payload-input-types.js
+│   │   │   │   │   └── streaming-blob-payload-output-types.js
+│   │   │   │   ├── transfer.js
+│   │   │   │   ├── transform
+│   │   │   │   │   ├── client-method-transforms.js
+│   │   │   │   │   ├── client-payload-blob-type-narrow.js
+│   │   │   │   │   ├── exact.js
+│   │   │   │   │   ├── no-undefined.js
+│   │   │   │   │   └── type-transform.js
+│   │   │   │   ├── uri.js
+│   │   │   │   ├── util.js
+│   │   │   │   └── waiter.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── abort-handler.js
+│   │   │   │   ├── abort.js
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── HttpApiKeyAuth.js
+│   │   │   │   │   ├── HttpAuthScheme.js
+│   │   │   │   │   ├── HttpAuthSchemeProvider.js
+│   │   │   │   │   ├── HttpSigner.js
+│   │   │   │   │   ├── IdentityProviderConfig.js
+│   │   │   │   │   ├── auth.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── blob
+│   │   │   │   │   └── blob-payload-input-types.js
+│   │   │   │   ├── checksum.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── command.js
+│   │   │   │   ├── connection
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── manager.js
+│   │   │   │   │   └── pool.js
+│   │   │   │   ├── crypto.js
+│   │   │   │   ├── downlevel-ts3.4
+│   │   │   │   │   └── transform
+│   │   │   │   │       └── type-transform.js
+│   │   │   │   ├── encode.js
+│   │   │   │   ├── endpoint.js
+│   │   │   │   ├── endpoints
+│   │   │   │   │   ├── EndpointRuleObject.js
+│   │   │   │   │   ├── ErrorRuleObject.js
+│   │   │   │   │   ├── RuleSetObject.js
+│   │   │   │   │   ├── TreeRuleObject.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── shared.js
+│   │   │   │   ├── eventStream.js
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── checksum.js
+│   │   │   │   │   ├── defaultClientConfiguration.js
+│   │   │   │   │   ├── defaultExtensionConfiguration.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── retry.js
+│   │   │   │   ├── externals-check
+│   │   │   │   │   └── browser-externals-check.js
+│   │   │   │   ├── http
+│   │   │   │   │   └── httpHandlerInitialization.js
+│   │   │   │   ├── http.js
+│   │   │   │   ├── identity
+│   │   │   │   │   ├── apiKeyIdentity.js
+│   │   │   │   │   ├── awsCredentialIdentity.js
+│   │   │   │   │   ├── identity.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── tokenIdentity.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── logger.js
+│   │   │   │   ├── middleware.js
+│   │   │   │   ├── pagination.js
+│   │   │   │   ├── profile.js
+│   │   │   │   ├── response.js
+│   │   │   │   ├── retry.js
+│   │   │   │   ├── serde.js
+│   │   │   │   ├── shapes.js
+│   │   │   │   ├── signature.js
+│   │   │   │   ├── stream.js
+│   │   │   │   ├── streaming-payload
+│   │   │   │   │   ├── streaming-blob-common-types.js
+│   │   │   │   │   ├── streaming-blob-payload-input-types.js
+│   │   │   │   │   └── streaming-blob-payload-output-types.js
+│   │   │   │   ├── transfer.js
+│   │   │   │   ├── transform
+│   │   │   │   │   ├── client-method-transforms.js
+│   │   │   │   │   ├── client-payload-blob-type-narrow.js
+│   │   │   │   │   ├── exact.js
+│   │   │   │   │   ├── no-undefined.js
+│   │   │   │   │   └── type-transform.js
+│   │   │   │   ├── uri.js
+│   │   │   │   ├── util.js
+│   │   │   │   └── waiter.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── abort-handler.d.ts
+│   │   │   │   ├── abort.d.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── HttpApiKeyAuth.d.ts
+│   │   │   │   │   ├── HttpAuthScheme.d.ts
+│   │   │   │   │   ├── HttpAuthSchemeProvider.d.ts
+│   │   │   │   │   ├── HttpSigner.d.ts
+│   │   │   │   │   ├── IdentityProviderConfig.d.ts
+│   │   │   │   │   ├── auth.d.ts
+│   │   │   │   │   └── index.d.ts
+│   │   │   │   ├── blob
+│   │   │   │   │   └── blob-payload-input-types.d.ts
+│   │   │   │   ├── checksum.d.ts
+│   │   │   │   ├── client.d.ts
+│   │   │   │   ├── command.d.ts
+│   │   │   │   ├── connection
+│   │   │   │   │   ├── config.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── manager.d.ts
+│   │   │   │   │   └── pool.d.ts
+│   │   │   │   ├── crypto.d.ts
+│   │   │   │   ├── downlevel-ts3.4
+│   │   │   │   │   └── transform
+│   │   │   │   │       └── type-transform.d.ts
+│   │   │   │   ├── encode.d.ts
+│   │   │   │   ├── endpoint.d.ts
+│   │   │   │   ├── endpoints
+│   │   │   │   │   ├── EndpointRuleObject.d.ts
+│   │   │   │   │   ├── ErrorRuleObject.d.ts
+│   │   │   │   │   ├── RuleSetObject.d.ts
+│   │   │   │   │   ├── TreeRuleObject.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── shared.d.ts
+│   │   │   │   ├── eventStream.d.ts
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── checksum.d.ts
+│   │   │   │   │   ├── defaultClientConfiguration.d.ts
+│   │   │   │   │   ├── defaultExtensionConfiguration.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── retry.d.ts
+│   │   │   │   ├── externals-check
+│   │   │   │   │   └── browser-externals-check.d.ts
+│   │   │   │   ├── http
+│   │   │   │   │   └── httpHandlerInitialization.d.ts
+│   │   │   │   ├── http.d.ts
+│   │   │   │   ├── identity
+│   │   │   │   │   ├── apiKeyIdentity.d.ts
+│   │   │   │   │   ├── awsCredentialIdentity.d.ts
+│   │   │   │   │   ├── identity.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── tokenIdentity.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── logger.d.ts
+│   │   │   │   ├── middleware.d.ts
+│   │   │   │   ├── pagination.d.ts
+│   │   │   │   ├── profile.d.ts
+│   │   │   │   ├── response.d.ts
+│   │   │   │   ├── retry.d.ts
+│   │   │   │   ├── serde.d.ts
+│   │   │   │   ├── shapes.d.ts
+│   │   │   │   ├── signature.d.ts
+│   │   │   │   ├── stream.d.ts
+│   │   │   │   ├── streaming-payload
+│   │   │   │   │   ├── streaming-blob-common-types.d.ts
+│   │   │   │   │   ├── streaming-blob-payload-input-types.d.ts
+│   │   │   │   │   └── streaming-blob-payload-output-types.d.ts
+│   │   │   │   ├── transfer.d.ts
+│   │   │   │   ├── transform
+│   │   │   │   │   ├── client-method-transforms.d.ts
+│   │   │   │   │   ├── client-payload-blob-type-narrow.d.ts
+│   │   │   │   │   ├── exact.d.ts
+│   │   │   │   │   ├── no-undefined.d.ts
+│   │   │   │   │   └── type-transform.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── abort-handler.d.ts
+│   │   │   │   │   ├── abort.d.ts
+│   │   │   │   │   ├── auth
+│   │   │   │   │   │   ├── HttpApiKeyAuth.d.ts
+│   │   │   │   │   │   ├── HttpAuthScheme.d.ts
+│   │   │   │   │   │   ├── HttpAuthSchemeProvider.d.ts
+│   │   │   │   │   │   ├── HttpSigner.d.ts
+│   │   │   │   │   │   ├── IdentityProviderConfig.d.ts
+│   │   │   │   │   │   ├── auth.d.ts
+│   │   │   │   │   │   └── index.d.ts
+│   │   │   │   │   ├── blob
+│   │   │   │   │   │   └── blob-payload-input-types.d.ts
+│   │   │   │   │   ├── checksum.d.ts
+│   │   │   │   │   ├── client.d.ts
+│   │   │   │   │   ├── command.d.ts
+│   │   │   │   │   ├── connection
+│   │   │   │   │   │   ├── config.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   ├── manager.d.ts
+│   │   │   │   │   │   └── pool.d.ts
+│   │   │   │   │   ├── crypto.d.ts
+│   │   │   │   │   ├── downlevel-ts3.4
+│   │   │   │   │   │   └── transform
+│   │   │   │   │   │       └── type-transform.d.ts
+│   │   │   │   │   ├── encode.d.ts
+│   │   │   │   │   ├── endpoint.d.ts
+│   │   │   │   │   ├── endpoints
+│   │   │   │   │   │   ├── EndpointRuleObject.d.ts
+│   │   │   │   │   │   ├── ErrorRuleObject.d.ts
+│   │   │   │   │   │   ├── RuleSetObject.d.ts
+│   │   │   │   │   │   ├── TreeRuleObject.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── shared.d.ts
+│   │   │   │   │   ├── eventStream.d.ts
+│   │   │   │   │   ├── extensions
+│   │   │   │   │   │   ├── checksum.d.ts
+│   │   │   │   │   │   ├── defaultClientConfiguration.d.ts
+│   │   │   │   │   │   ├── defaultExtensionConfiguration.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── retry.d.ts
+│   │   │   │   │   ├── externals-check
+│   │   │   │   │   │   └── browser-externals-check.d.ts
+│   │   │   │   │   ├── http
+│   │   │   │   │   │   └── httpHandlerInitialization.d.ts
+│   │   │   │   │   ├── http.d.ts
+│   │   │   │   │   ├── identity
+│   │   │   │   │   │   ├── apiKeyIdentity.d.ts
+│   │   │   │   │   │   ├── awsCredentialIdentity.d.ts
+│   │   │   │   │   │   ├── identity.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── tokenIdentity.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── logger.d.ts
+│   │   │   │   │   ├── middleware.d.ts
+│   │   │   │   │   ├── pagination.d.ts
+│   │   │   │   │   ├── profile.d.ts
+│   │   │   │   │   ├── response.d.ts
+│   │   │   │   │   ├── retry.d.ts
+│   │   │   │   │   ├── serde.d.ts
+│   │   │   │   │   ├── shapes.d.ts
+│   │   │   │   │   ├── signature.d.ts
+│   │   │   │   │   ├── stream.d.ts
+│   │   │   │   │   ├── streaming-payload
+│   │   │   │   │   │   ├── streaming-blob-common-types.d.ts
+│   │   │   │   │   │   ├── streaming-blob-payload-input-types.d.ts
+│   │   │   │   │   │   └── streaming-blob-payload-output-types.d.ts
+│   │   │   │   │   ├── transfer.d.ts
+│   │   │   │   │   ├── transform
+│   │   │   │   │   │   ├── client-method-transforms.d.ts
+│   │   │   │   │   │   ├── client-payload-blob-type-narrow.d.ts
+│   │   │   │   │   │   ├── exact.d.ts
+│   │   │   │   │   │   ├── no-undefined.d.ts
+│   │   │   │   │   │   └── type-transform.d.ts
+│   │   │   │   │   ├── uri.d.ts
+│   │   │   │   │   ├── util.d.ts
+│   │   │   │   │   └── waiter.d.ts
+│   │   │   │   ├── uri.d.ts
+│   │   │   │   ├── util.d.ts
+│   │   │   │   └── waiter.d.ts
+│   │   │   └── package.json
+│   │   ├── url-parser
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-base64
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── constants.browser.js
+│   │   │   │   ├── fromBase64.browser.js
+│   │   │   │   ├── fromBase64.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── toBase64.browser.js
+│   │   │   │   └── toBase64.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── constants.browser.js
+│   │   │   │   ├── fromBase64.browser.js
+│   │   │   │   ├── fromBase64.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── toBase64.browser.js
+│   │   │   │   └── toBase64.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── constants.browser.d.ts
+│   │   │   │   ├── fromBase64.browser.d.ts
+│   │   │   │   ├── fromBase64.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── toBase64.browser.d.ts
+│   │   │   │   ├── toBase64.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── constants.browser.d.ts
+│   │   │   │       ├── fromBase64.browser.d.ts
+│   │   │   │       ├── fromBase64.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── toBase64.browser.d.ts
+│   │   │   │       └── toBase64.d.ts
+│   │   │   └── package.json
+│   │   ├── util-body-length-browser
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── calculateBodyLength.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── calculateBodyLength.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── calculateBodyLength.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── calculateBodyLength.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-body-length-node
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── calculateBodyLength.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── calculateBodyLength.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── calculateBodyLength.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── calculateBodyLength.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-buffer-from
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-config-provider
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── booleanSelector.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── numberSelector.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── booleanSelector.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── numberSelector.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── booleanSelector.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── numberSelector.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── booleanSelector.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── numberSelector.d.ts
+│   │   │   │   │   └── types.d.ts
+│   │   │   │   └── types.d.ts
+│   │   │   └── package.json
+│   │   ├── util-defaults-mode-browser
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── resolveDefaultsModeConfig.js
+│   │   │   │   └── resolveDefaultsModeConfig.native.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── resolveDefaultsModeConfig.js
+│   │   │   │   └── resolveDefaultsModeConfig.native.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── resolveDefaultsModeConfig.d.ts
+│   │   │   │   ├── resolveDefaultsModeConfig.native.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── constants.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── resolveDefaultsModeConfig.d.ts
+│   │   │   │       └── resolveDefaultsModeConfig.native.d.ts
+│   │   │   └── package.json
+│   │   ├── util-defaults-mode-node
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── defaultsModeConfig.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── resolveDefaultsModeConfig.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── defaultsModeConfig.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── resolveDefaultsModeConfig.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── defaultsModeConfig.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── resolveDefaultsModeConfig.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── constants.d.ts
+│   │   │   │       ├── defaultsModeConfig.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── resolveDefaultsModeConfig.d.ts
+│   │   │   └── package.json
+│   │   ├── util-endpoints
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── debug
+│   │   │   │   │   ├── debugId.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── toDebugString.js
+│   │   │   │   ├── getEndpointUrlConfig.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── booleanEquals.js
+│   │   │   │   │   ├── getAttr.js
+│   │   │   │   │   ├── getAttrPathList.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── isIpAddress.js
+│   │   │   │   │   ├── isSet.js
+│   │   │   │   │   ├── isValidHostLabel.js
+│   │   │   │   │   ├── not.js
+│   │   │   │   │   ├── parseURL.js
+│   │   │   │   │   ├── stringEquals.js
+│   │   │   │   │   ├── substring.js
+│   │   │   │   │   └── uriEncode.js
+│   │   │   │   ├── resolveEndpoint.js
+│   │   │   │   ├── types
+│   │   │   │   │   ├── EndpointError.js
+│   │   │   │   │   ├── EndpointFunctions.js
+│   │   │   │   │   ├── EndpointRuleObject.js
+│   │   │   │   │   ├── ErrorRuleObject.js
+│   │   │   │   │   ├── RuleSetObject.js
+│   │   │   │   │   ├── TreeRuleObject.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── shared.js
+│   │   │   │   └── utils
+│   │   │   │       ├── callFunction.js
+│   │   │   │       ├── customEndpointFunctions.js
+│   │   │   │       ├── endpointFunctions.js
+│   │   │   │       ├── evaluateCondition.js
+│   │   │   │       ├── evaluateConditions.js
+│   │   │   │       ├── evaluateEndpointRule.js
+│   │   │   │       ├── evaluateErrorRule.js
+│   │   │   │       ├── evaluateExpression.js
+│   │   │   │       ├── evaluateRules.js
+│   │   │   │       ├── evaluateTemplate.js
+│   │   │   │       ├── evaluateTreeRule.js
+│   │   │   │       ├── getEndpointHeaders.js
+│   │   │   │       ├── getEndpointProperties.js
+│   │   │   │       ├── getEndpointProperty.js
+│   │   │   │       ├── getEndpointUrl.js
+│   │   │   │       ├── getReferenceValue.js
+│   │   │   │       └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── debug
+│   │   │   │   │   ├── debugId.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── toDebugString.js
+│   │   │   │   ├── getEndpointUrlConfig.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── booleanEquals.js
+│   │   │   │   │   ├── getAttr.js
+│   │   │   │   │   ├── getAttrPathList.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── isIpAddress.js
+│   │   │   │   │   ├── isSet.js
+│   │   │   │   │   ├── isValidHostLabel.js
+│   │   │   │   │   ├── not.js
+│   │   │   │   │   ├── parseURL.js
+│   │   │   │   │   ├── stringEquals.js
+│   │   │   │   │   ├── substring.js
+│   │   │   │   │   └── uriEncode.js
+│   │   │   │   ├── resolveEndpoint.js
+│   │   │   │   ├── types
+│   │   │   │   │   ├── EndpointError.js
+│   │   │   │   │   ├── EndpointFunctions.js
+│   │   │   │   │   ├── EndpointRuleObject.js
+│   │   │   │   │   ├── ErrorRuleObject.js
+│   │   │   │   │   ├── RuleSetObject.js
+│   │   │   │   │   ├── TreeRuleObject.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── shared.js
+│   │   │   │   └── utils
+│   │   │   │       ├── callFunction.js
+│   │   │   │       ├── customEndpointFunctions.js
+│   │   │   │       ├── endpointFunctions.js
+│   │   │   │       ├── evaluateCondition.js
+│   │   │   │       ├── evaluateConditions.js
+│   │   │   │       ├── evaluateEndpointRule.js
+│   │   │   │       ├── evaluateErrorRule.js
+│   │   │   │       ├── evaluateExpression.js
+│   │   │   │       ├── evaluateRules.js
+│   │   │   │       ├── evaluateTemplate.js
+│   │   │   │       ├── evaluateTreeRule.js
+│   │   │   │       ├── getEndpointHeaders.js
+│   │   │   │       ├── getEndpointProperties.js
+│   │   │   │       ├── getEndpointProperty.js
+│   │   │   │       ├── getEndpointUrl.js
+│   │   │   │       ├── getReferenceValue.js
+│   │   │   │       └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── debug
+│   │   │   │   │   ├── debugId.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── toDebugString.d.ts
+│   │   │   │   ├── getEndpointUrlConfig.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── booleanEquals.d.ts
+│   │   │   │   │   ├── getAttr.d.ts
+│   │   │   │   │   ├── getAttrPathList.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── isIpAddress.d.ts
+│   │   │   │   │   ├── isSet.d.ts
+│   │   │   │   │   ├── isValidHostLabel.d.ts
+│   │   │   │   │   ├── not.d.ts
+│   │   │   │   │   ├── parseURL.d.ts
+│   │   │   │   │   ├── stringEquals.d.ts
+│   │   │   │   │   ├── substring.d.ts
+│   │   │   │   │   └── uriEncode.d.ts
+│   │   │   │   ├── resolveEndpoint.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── debug
+│   │   │   │   │   │   ├── debugId.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── toDebugString.d.ts
+│   │   │   │   │   ├── getEndpointUrlConfig.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── lib
+│   │   │   │   │   │   ├── booleanEquals.d.ts
+│   │   │   │   │   │   ├── getAttr.d.ts
+│   │   │   │   │   │   ├── getAttrPathList.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   ├── isIpAddress.d.ts
+│   │   │   │   │   │   ├── isSet.d.ts
+│   │   │   │   │   │   ├── isValidHostLabel.d.ts
+│   │   │   │   │   │   ├── not.d.ts
+│   │   │   │   │   │   ├── parseURL.d.ts
+│   │   │   │   │   │   ├── stringEquals.d.ts
+│   │   │   │   │   │   ├── substring.d.ts
+│   │   │   │   │   │   └── uriEncode.d.ts
+│   │   │   │   │   ├── resolveEndpoint.d.ts
+│   │   │   │   │   ├── types
+│   │   │   │   │   │   ├── EndpointError.d.ts
+│   │   │   │   │   │   ├── EndpointFunctions.d.ts
+│   │   │   │   │   │   ├── EndpointRuleObject.d.ts
+│   │   │   │   │   │   ├── ErrorRuleObject.d.ts
+│   │   │   │   │   │   ├── RuleSetObject.d.ts
+│   │   │   │   │   │   ├── TreeRuleObject.d.ts
+│   │   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   │   └── shared.d.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       ├── callFunction.d.ts
+│   │   │   │   │       ├── customEndpointFunctions.d.ts
+│   │   │   │   │       ├── endpointFunctions.d.ts
+│   │   │   │   │       ├── evaluateCondition.d.ts
+│   │   │   │   │       ├── evaluateConditions.d.ts
+│   │   │   │   │       ├── evaluateEndpointRule.d.ts
+│   │   │   │   │       ├── evaluateErrorRule.d.ts
+│   │   │   │   │       ├── evaluateExpression.d.ts
+│   │   │   │   │       ├── evaluateRules.d.ts
+│   │   │   │   │       ├── evaluateTemplate.d.ts
+│   │   │   │   │       ├── evaluateTreeRule.d.ts
+│   │   │   │   │       ├── getEndpointHeaders.d.ts
+│   │   │   │   │       ├── getEndpointProperties.d.ts
+│   │   │   │   │       ├── getEndpointProperty.d.ts
+│   │   │   │   │       ├── getEndpointUrl.d.ts
+│   │   │   │   │       ├── getReferenceValue.d.ts
+│   │   │   │   │       └── index.d.ts
+│   │   │   │   ├── types
+│   │   │   │   │   ├── EndpointError.d.ts
+│   │   │   │   │   ├── EndpointFunctions.d.ts
+│   │   │   │   │   ├── EndpointRuleObject.d.ts
+│   │   │   │   │   ├── ErrorRuleObject.d.ts
+│   │   │   │   │   ├── RuleSetObject.d.ts
+│   │   │   │   │   ├── TreeRuleObject.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── shared.d.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── callFunction.d.ts
+│   │   │   │       ├── customEndpointFunctions.d.ts
+│   │   │   │       ├── endpointFunctions.d.ts
+│   │   │   │       ├── evaluateCondition.d.ts
+│   │   │   │       ├── evaluateConditions.d.ts
+│   │   │   │       ├── evaluateEndpointRule.d.ts
+│   │   │   │       ├── evaluateErrorRule.d.ts
+│   │   │   │       ├── evaluateExpression.d.ts
+│   │   │   │       ├── evaluateRules.d.ts
+│   │   │   │       ├── evaluateTemplate.d.ts
+│   │   │   │       ├── evaluateTreeRule.d.ts
+│   │   │   │       ├── getEndpointHeaders.d.ts
+│   │   │   │       ├── getEndpointProperties.d.ts
+│   │   │   │       ├── getEndpointProperty.d.ts
+│   │   │   │       ├── getEndpointUrl.d.ts
+│   │   │   │       ├── getReferenceValue.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-hex-encoding
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-middleware
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── getSmithyContext.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── normalizeProvider.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── getSmithyContext.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── normalizeProvider.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── getSmithyContext.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── normalizeProvider.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── getSmithyContext.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       └── normalizeProvider.d.ts
+│   │   │   └── package.json
+│   │   ├── util-retry
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── AdaptiveRetryStrategy.js
+│   │   │   │   ├── ConfiguredRetryStrategy.js
+│   │   │   │   ├── DefaultRateLimiter.js
+│   │   │   │   ├── StandardRetryStrategy.js
+│   │   │   │   ├── config.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── defaultRetryBackoffStrategy.js
+│   │   │   │   ├── defaultRetryToken.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── AdaptiveRetryStrategy.js
+│   │   │   │   ├── ConfiguredRetryStrategy.js
+│   │   │   │   ├── DefaultRateLimiter.js
+│   │   │   │   ├── StandardRetryStrategy.js
+│   │   │   │   ├── config.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── defaultRetryBackoffStrategy.js
+│   │   │   │   ├── defaultRetryToken.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── types.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── AdaptiveRetryStrategy.d.ts
+│   │   │   │   ├── ConfiguredRetryStrategy.d.ts
+│   │   │   │   ├── DefaultRateLimiter.d.ts
+│   │   │   │   ├── StandardRetryStrategy.d.ts
+│   │   │   │   ├── config.d.ts
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── defaultRetryBackoffStrategy.d.ts
+│   │   │   │   ├── defaultRetryToken.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── ts3.4
+│   │   │   │   │   ├── AdaptiveRetryStrategy.d.ts
+│   │   │   │   │   ├── ConfiguredRetryStrategy.d.ts
+│   │   │   │   │   ├── DefaultRateLimiter.d.ts
+│   │   │   │   │   ├── StandardRetryStrategy.d.ts
+│   │   │   │   │   ├── config.d.ts
+│   │   │   │   │   ├── constants.d.ts
+│   │   │   │   │   ├── defaultRetryBackoffStrategy.d.ts
+│   │   │   │   │   ├── defaultRetryToken.d.ts
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   └── types.d.ts
+│   │   │   │   └── types.d.ts
+│   │   │   └── package.json
+│   │   ├── util-stream
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── blob
+│   │   │   │   │   ├── Uint8ArrayBlobAdapter.js
+│   │   │   │   │   └── transforms.js
+│   │   │   │   ├── getAwsChunkedEncodingStream.browser.js
+│   │   │   │   ├── getAwsChunkedEncodingStream.js
+│   │   │   │   ├── headStream.browser.js
+│   │   │   │   ├── headStream.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── sdk-stream-mixin.browser.js
+│   │   │   │   ├── sdk-stream-mixin.js
+│   │   │   │   ├── splitStream.browser.js
+│   │   │   │   ├── splitStream.js
+│   │   │   │   └── stream-type-check.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── blob
+│   │   │   │   │   ├── Uint8ArrayBlobAdapter.js
+│   │   │   │   │   └── transforms.js
+│   │   │   │   ├── getAwsChunkedEncodingStream.browser.js
+│   │   │   │   ├── getAwsChunkedEncodingStream.js
+│   │   │   │   ├── headStream.browser.js
+│   │   │   │   ├── headStream.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── sdk-stream-mixin.browser.js
+│   │   │   │   ├── sdk-stream-mixin.js
+│   │   │   │   ├── splitStream.browser.js
+│   │   │   │   ├── splitStream.js
+│   │   │   │   └── stream-type-check.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── blob
+│   │   │   │   │   ├── Uint8ArrayBlobAdapter.d.ts
+│   │   │   │   │   └── transforms.d.ts
+│   │   │   │   ├── getAwsChunkedEncodingStream.browser.d.ts
+│   │   │   │   ├── getAwsChunkedEncodingStream.d.ts
+│   │   │   │   ├── headStream.browser.d.ts
+│   │   │   │   ├── headStream.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── sdk-stream-mixin.browser.d.ts
+│   │   │   │   ├── sdk-stream-mixin.d.ts
+│   │   │   │   ├── splitStream.browser.d.ts
+│   │   │   │   ├── splitStream.d.ts
+│   │   │   │   ├── stream-type-check.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── blob
+│   │   │   │       │   ├── Uint8ArrayBlobAdapter.d.ts
+│   │   │   │       │   └── transforms.d.ts
+│   │   │   │       ├── getAwsChunkedEncodingStream.browser.d.ts
+│   │   │   │       ├── getAwsChunkedEncodingStream.d.ts
+│   │   │   │       ├── headStream.browser.d.ts
+│   │   │   │       ├── headStream.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── sdk-stream-mixin.browser.d.ts
+│   │   │   │       ├── sdk-stream-mixin.d.ts
+│   │   │   │       ├── splitStream.browser.d.ts
+│   │   │   │       ├── splitStream.d.ts
+│   │   │   │       └── stream-type-check.d.ts
+│   │   │   └── package.json
+│   │   ├── util-uri-escape
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── escape-uri-path.js
+│   │   │   │   ├── escape-uri.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── escape-uri-path.js
+│   │   │   │   ├── escape-uri.js
+│   │   │   │   └── index.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── escape-uri-path.d.ts
+│   │   │   │   ├── escape-uri.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── escape-uri-path.d.ts
+│   │   │   │       ├── escape-uri.d.ts
+│   │   │   │       └── index.d.ts
+│   │   │   └── package.json
+│   │   ├── util-utf8
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── dist-cjs
+│   │   │   │   ├── fromUtf8.browser.js
+│   │   │   │   ├── fromUtf8.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── toUint8Array.js
+│   │   │   │   ├── toUtf8.browser.js
+│   │   │   │   └── toUtf8.js
+│   │   │   ├── dist-es
+│   │   │   │   ├── fromUtf8.browser.js
+│   │   │   │   ├── fromUtf8.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── toUint8Array.js
+│   │   │   │   ├── toUtf8.browser.js
+│   │   │   │   └── toUtf8.js
+│   │   │   ├── dist-types
+│   │   │   │   ├── fromUtf8.browser.d.ts
+│   │   │   │   ├── fromUtf8.d.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── toUint8Array.d.ts
+│   │   │   │   ├── toUtf8.browser.d.ts
+│   │   │   │   ├── toUtf8.d.ts
+│   │   │   │   └── ts3.4
+│   │   │   │       ├── fromUtf8.browser.d.ts
+│   │   │   │       ├── fromUtf8.d.ts
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── toUint8Array.d.ts
+│   │   │   │       ├── toUtf8.browser.d.ts
+│   │   │   │       └── toUtf8.d.ts
+│   │   │   └── package.json
+│   │   └── util-waiter
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── dist-cjs
+│   │       │   ├── createWaiter.js
+│   │       │   ├── index.js
+│   │       │   ├── poller.js
+│   │       │   ├── utils
+│   │       │   │   ├── index.js
+│   │       │   │   ├── sleep.js
+│   │       │   │   └── validate.js
+│   │       │   └── waiter.js
+│   │       ├── dist-es
+│   │       │   ├── createWaiter.js
+│   │       │   ├── index.js
+│   │       │   ├── poller.js
+│   │       │   ├── utils
+│   │       │   │   ├── index.js
+│   │       │   │   ├── sleep.js
+│   │       │   │   └── validate.js
+│   │       │   └── waiter.js
+│   │       ├── dist-types
+│   │       │   ├── createWaiter.d.ts
+│   │       │   ├── index.d.ts
+│   │       │   ├── poller.d.ts
+│   │       │   ├── ts3.4
+│   │       │   │   ├── createWaiter.d.ts
+│   │       │   │   ├── index.d.ts
+│   │       │   │   ├── poller.d.ts
+│   │       │   │   ├── utils
+│   │       │   │   │   ├── index.d.ts
+│   │       │   │   │   ├── sleep.d.ts
+│   │       │   │   │   └── validate.d.ts
+│   │       │   │   └── waiter.d.ts
+│   │       │   ├── utils
+│   │       │   │   ├── index.d.ts
+│   │       │   │   ├── sleep.d.ts
+│   │       │   │   └── validate.d.ts
+│   │       │   └── waiter.d.ts
+│   │       └── package.json
+│   ├── bowser
+│   │   ├── CHANGELOG.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bundled.js
+│   │   ├── es5.js
+│   │   ├── index.d.ts
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── bowser.js
+│   │       ├── constants.js
+│   │       ├── parser-browsers.js
+│   │       ├── parser-engines.js
+│   │       ├── parser-os.js
+│   │       ├── parser-platforms.js
+│   │       ├── parser.js
+│   │       └── utils.js
+│   ├── dynamoose
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   │   ├── Condition.d.ts
+│   │   │   ├── Condition.js
+│   │   │   ├── Error.d.ts
+│   │   │   ├── Error.js
+│   │   │   ├── General.d.ts
+│   │   │   ├── General.js
+│   │   │   ├── Instance.d.ts
+│   │   │   ├── Instance.js
+│   │   │   ├── Internal.d.ts
+│   │   │   ├── Internal.js
+│   │   │   ├── InternalPropertiesClass.d.ts
+│   │   │   ├── InternalPropertiesClass.js
+│   │   │   ├── Item.d.ts
+│   │   │   ├── Item.js
+│   │   │   ├── ItemRetriever.d.ts
+│   │   │   ├── ItemRetriever.js
+│   │   │   ├── Model
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.js
+│   │   │   ├── ModelStore.d.ts
+│   │   │   ├── ModelStore.js
+│   │   │   ├── Populate.d.ts
+│   │   │   ├── Populate.js
+│   │   │   ├── Schema.d.ts
+│   │   │   ├── Schema.js
+│   │   │   ├── Serializer.d.ts
+│   │   │   ├── Serializer.js
+│   │   │   ├── Table
+│   │   │   │   ├── defaults.d.ts
+│   │   │   │   ├── defaults.js
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   ├── types.d.ts
+│   │   │   │   ├── types.js
+│   │   │   │   ├── utilities.d.ts
+│   │   │   │   └── utilities.js
+│   │   │   ├── Transaction.d.ts
+│   │   │   ├── Transaction.js
+│   │   │   ├── Types.d.ts
+│   │   │   ├── Types.js
+│   │   │   ├── aws
+│   │   │   │   ├── converter.d.ts
+│   │   │   │   ├── converter.js
+│   │   │   │   ├── ddb
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── internal.d.ts
+│   │   │   │   │   └── internal.js
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   ├── type.d.ts
+│   │   │   ├── type.js
+│   │   │   └── utils
+│   │   │       ├── all_elements_match.d.ts
+│   │   │       ├── all_elements_match.js
+│   │   │       ├── array_flatten.d.ts
+│   │   │       ├── array_flatten.js
+│   │   │       ├── async_reduce.d.ts
+│   │   │       ├── async_reduce.js
+│   │   │       ├── capitalize_first_letter.d.ts
+│   │   │       ├── capitalize_first_letter.js
+│   │   │       ├── childKey.d.ts
+│   │   │       ├── childKey.js
+│   │   │       ├── combine_objects.d.ts
+│   │   │       ├── combine_objects.js
+│   │   │       ├── deep_copy.d.ts
+│   │   │       ├── deep_copy.js
+│   │   │       ├── dynamoose
+│   │   │       │   ├── convertConditionArrayRequestObjectToString.d.ts
+│   │   │       │   ├── convertConditionArrayRequestObjectToString.js
+│   │   │       │   ├── getValueTypeCheckResult.d.ts
+│   │   │       │   ├── getValueTypeCheckResult.js
+│   │   │       │   ├── get_provisioned_throughput.d.ts
+│   │   │       │   ├── get_provisioned_throughput.js
+│   │   │       │   ├── index.d.ts
+│   │   │       │   ├── index.js
+│   │   │       │   ├── index_changes.d.ts
+│   │   │       │   ├── index_changes.js
+│   │   │       │   ├── itemToJSON.d.ts
+│   │   │       │   ├── itemToJSON.js
+│   │   │       │   ├── returnModel.d.ts
+│   │   │       │   └── returnModel.js
+│   │   │       ├── empty_function.d.ts
+│   │   │       ├── empty_function.js
+│   │   │       ├── find_best_index.d.ts
+│   │   │       ├── find_best_index.js
+│   │   │       ├── importPackage.d.ts
+│   │   │       ├── importPackage.js
+│   │   │       ├── index.d.ts
+│   │   │       ├── index.js
+│   │   │       ├── keyBy.d.ts
+│   │   │       ├── keyBy.js
+│   │   │       ├── log.d.ts
+│   │   │       ├── log.js
+│   │   │       ├── merge_objects.d.ts
+│   │   │       ├── merge_objects.js
+│   │   │       ├── parentKey.d.ts
+│   │   │       ├── parentKey.js
+│   │   │       ├── set_immediate_promise.d.ts
+│   │   │       ├── set_immediate_promise.js
+│   │   │       ├── timeout.d.ts
+│   │   │       ├── timeout.js
+│   │   │       ├── type_name.d.ts
+│   │   │       ├── type_name.js
+│   │   │       ├── unique_array_elements.d.ts
+│   │   │       └── unique_array_elements.js
+│   │   └── package.json
+│   ├── dynamoose-utils
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   │   ├── Error.d.ts
+│   │   │   ├── Error.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   ├── wildcard_allowed_check.d.ts
+│   │   │   └── wildcard_allowed_check.js
+│   │   ├── lib
+│   │   │   ├── Error.ts
+│   │   │   ├── index.ts
+│   │   │   └── wildcard_allowed_check.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── fast-xml-parser
+│   │   ├── CHANGELOG.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── cli
+│   │       │   ├── cli.js
+│   │       │   ├── man.js
+│   │       │   └── read.js
+│   │       ├── fxp.d.ts
+│   │       ├── fxp.js
+│   │       ├── util.js
+│   │       ├── validator.js
+│   │       ├── xmlbuilder
+│   │       │   ├── json2xml.js
+│   │       │   ├── orderedJs2Xml.js
+│   │       │   └── prettifyJs2Xml.js
+│   │       └── xmlparser
+│   │           ├── DocTypeReader.js
+│   │           ├── OptionsBuilder.js
+│   │           ├── OrderedObjParser.js
+│   │           ├── XMLParser.js
+│   │           ├── node2json.js
+│   │           └── xmlNode.js
+│   ├── js-object-utilities
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   │   ├── circularKeys.d.ts
+│   │   │   ├── circularKeys.js
+│   │   │   ├── clear_empties.d.ts
+│   │   │   ├── clear_empties.js
+│   │   │   ├── delete.d.ts
+│   │   │   ├── delete.js
+│   │   │   ├── entries.d.ts
+│   │   │   ├── entries.js
+│   │   │   ├── equals.d.ts
+│   │   │   ├── equals.js
+│   │   │   ├── get.d.ts
+│   │   │   ├── get.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   ├── isCircular.d.ts
+│   │   │   ├── isCircular.js
+│   │   │   ├── keys.d.ts
+│   │   │   ├── keys.js
+│   │   │   ├── pick.d.ts
+│   │   │   ├── pick.js
+│   │   │   ├── set.d.ts
+│   │   │   ├── set.js
+│   │   │   ├── types.d.ts
+│   │   │   └── types.js
+│   │   └── package.json
+│   ├── mnemonist
+│   │   ├── CHANGELOG.md
+│   │   ├── LICENSE.txt
+│   │   ├── README.md
+│   │   ├── bi-map.d.ts
+│   │   ├── bi-map.js
+│   │   ├── bit-set.d.ts
+│   │   ├── bit-set.js
+│   │   ├── bit-vector.d.ts
+│   │   ├── bit-vector.js
+│   │   ├── bk-tree.d.ts
+│   │   ├── bk-tree.js
+│   │   ├── bloom-filter.d.ts
+│   │   ├── bloom-filter.js
+│   │   ├── circular-buffer.d.ts
+│   │   ├── circular-buffer.js
+│   │   ├── critbit-tree-map.js
+│   │   ├── default-map.d.ts
+│   │   ├── default-map.js
+│   │   ├── default-weak-map.d.ts
+│   │   ├── default-weak-map.js
+│   │   ├── fibonacci-heap.d.ts
+│   │   ├── fibonacci-heap.js
+│   │   ├── fixed-critbit-tree-map.js
+│   │   ├── fixed-deque.d.ts
+│   │   ├── fixed-deque.js
+│   │   ├── fixed-reverse-heap.d.ts
+│   │   ├── fixed-reverse-heap.js
+│   │   ├── fixed-stack.d.ts
+│   │   ├── fixed-stack.js
+│   │   ├── fuzzy-map.d.ts
+│   │   ├── fuzzy-map.js
+│   │   ├── fuzzy-multi-map.d.ts
+│   │   ├── fuzzy-multi-map.js
+│   │   ├── hashed-array-tree.d.ts
+│   │   ├── hashed-array-tree.js
+│   │   ├── heap.d.ts
+│   │   ├── heap.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── inverted-index.d.ts
+│   │   ├── inverted-index.js
+│   │   ├── kd-tree.d.ts
+│   │   ├── kd-tree.js
+│   │   ├── linked-list.d.ts
+│   │   ├── linked-list.js
+│   │   ├── lru-cache.d.ts
+│   │   ├── lru-cache.js
+│   │   ├── lru-map.d.ts
+│   │   ├── lru-map.js
+│   │   ├── multi-array.js
+│   │   ├── multi-map.d.ts
+│   │   ├── multi-map.js
+│   │   ├── multi-set.d.ts
+│   │   ├── multi-set.js
+│   │   ├── package.json
+│   │   ├── passjoin-index.d.ts
+│   │   ├── passjoin-index.js
+│   │   ├── queue.d.ts
+│   │   ├── queue.js
+│   │   ├── semi-dynamic-trie.js
+│   │   ├── set.d.ts
+│   │   ├── set.js
+│   │   ├── sort
+│   │   │   ├── insertion.d.ts
+│   │   │   ├── insertion.js
+│   │   │   ├── quick.d.ts
+│   │   │   └── quick.js
+│   │   ├── sparse-map.d.ts
+│   │   ├── sparse-map.js
+│   │   ├── sparse-queue-set.d.ts
+│   │   ├── sparse-queue-set.js
+│   │   ├── sparse-set.d.ts
+│   │   ├── sparse-set.js
+│   │   ├── stack.d.ts
+│   │   ├── stack.js
+│   │   ├── static-disjoint-set.d.ts
+│   │   ├── static-disjoint-set.js
+│   │   ├── static-interval-tree.d.ts
+│   │   ├── static-interval-tree.js
+│   │   ├── suffix-array.d.ts
+│   │   ├── suffix-array.js
+│   │   ├── symspell.d.ts
+│   │   ├── symspell.js
+│   │   ├── trie-map.d.ts
+│   │   ├── trie-map.js
+│   │   ├── trie.d.ts
+│   │   ├── trie.js
+│   │   ├── utils
+│   │   │   ├── binary-search.js
+│   │   │   ├── bitwise.js
+│   │   │   ├── comparators.js
+│   │   │   ├── hash-tables.js
+│   │   │   ├── iterables.js
+│   │   │   ├── merge.js
+│   │   │   ├── murmurhash3.js
+│   │   │   ├── typed-arrays.js
+│   │   │   └── types.d.ts
+│   │   ├── vector.d.ts
+│   │   ├── vector.js
+│   │   ├── vp-tree.d.ts
+│   │   └── vp-tree.js
+│   ├── obliterator
+│   │   ├── LICENSE.txt
+│   │   ├── README.md
+│   │   ├── chain.d.ts
+│   │   ├── chain.js
+│   │   ├── combinations.d.ts
+│   │   ├── combinations.js
+│   │   ├── consume.d.ts
+│   │   ├── consume.js
+│   │   ├── filter.d.ts
+│   │   ├── filter.js
+│   │   ├── foreach.d.ts
+│   │   ├── foreach.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── iterator.d.ts
+│   │   ├── iterator.js
+│   │   ├── map.d.ts
+│   │   ├── map.js
+│   │   ├── match.d.ts
+│   │   ├── match.js
+│   │   ├── package.json
+│   │   ├── permutations.d.ts
+│   │   ├── permutations.js
+│   │   ├── power-set.d.ts
+│   │   ├── power-set.js
+│   │   ├── range.d.ts
+│   │   ├── range.js
+│   │   ├── split.d.ts
+│   │   ├── split.js
+│   │   ├── take-into.d.ts
+│   │   ├── take-into.js
+│   │   ├── take.d.ts
+│   │   └── take.js
+│   ├── strnum
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   ├── strnum.js
+│   │   └── strnum.test.js
+│   ├── tslib
+│   │   ├── CopyrightNotice.txt
+│   │   ├── LICENSE.txt
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── modules
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   └── package.json
+│   │   ├── package.json
+│   │   ├── tslib.d.ts
+│   │   ├── tslib.es6.html
+│   │   ├── tslib.es6.js
+│   │   ├── tslib.es6.mjs
+│   │   ├── tslib.html
+│   │   └── tslib.js
+│   ├── typescript
+│   │   ├── LICENSE.txt
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── ThirdPartyNoticeText.txt
+│   │   ├── bin
+│   │   │   ├── tsc
+│   │   │   └── tsserver
+│   │   ├── lib
+│   │   │   ├── cancellationToken.js
+│   │   │   ├── cs
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── de
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── es
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── fr
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── it
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── ja
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── ko
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── lib.d.ts
+│   │   │   ├── lib.decorators.d.ts
+│   │   │   ├── lib.decorators.legacy.d.ts
+│   │   │   ├── lib.dom.asynciterable.d.ts
+│   │   │   ├── lib.dom.d.ts
+│   │   │   ├── lib.dom.iterable.d.ts
+│   │   │   ├── lib.es2015.collection.d.ts
+│   │   │   ├── lib.es2015.core.d.ts
+│   │   │   ├── lib.es2015.d.ts
+│   │   │   ├── lib.es2015.generator.d.ts
+│   │   │   ├── lib.es2015.iterable.d.ts
+│   │   │   ├── lib.es2015.promise.d.ts
+│   │   │   ├── lib.es2015.proxy.d.ts
+│   │   │   ├── lib.es2015.reflect.d.ts
+│   │   │   ├── lib.es2015.symbol.d.ts
+│   │   │   ├── lib.es2015.symbol.wellknown.d.ts
+│   │   │   ├── lib.es2016.array.include.d.ts
+│   │   │   ├── lib.es2016.d.ts
+│   │   │   ├── lib.es2016.full.d.ts
+│   │   │   ├── lib.es2016.intl.d.ts
+│   │   │   ├── lib.es2017.d.ts
+│   │   │   ├── lib.es2017.date.d.ts
+│   │   │   ├── lib.es2017.full.d.ts
+│   │   │   ├── lib.es2017.intl.d.ts
+│   │   │   ├── lib.es2017.object.d.ts
+│   │   │   ├── lib.es2017.sharedmemory.d.ts
+│   │   │   ├── lib.es2017.string.d.ts
+│   │   │   ├── lib.es2017.typedarrays.d.ts
+│   │   │   ├── lib.es2018.asyncgenerator.d.ts
+│   │   │   ├── lib.es2018.asynciterable.d.ts
+│   │   │   ├── lib.es2018.d.ts
+│   │   │   ├── lib.es2018.full.d.ts
+│   │   │   ├── lib.es2018.intl.d.ts
+│   │   │   ├── lib.es2018.promise.d.ts
+│   │   │   ├── lib.es2018.regexp.d.ts
+│   │   │   ├── lib.es2019.array.d.ts
+│   │   │   ├── lib.es2019.d.ts
+│   │   │   ├── lib.es2019.full.d.ts
+│   │   │   ├── lib.es2019.intl.d.ts
+│   │   │   ├── lib.es2019.object.d.ts
+│   │   │   ├── lib.es2019.string.d.ts
+│   │   │   ├── lib.es2019.symbol.d.ts
+│   │   │   ├── lib.es2020.bigint.d.ts
+│   │   │   ├── lib.es2020.d.ts
+│   │   │   ├── lib.es2020.date.d.ts
+│   │   │   ├── lib.es2020.full.d.ts
+│   │   │   ├── lib.es2020.intl.d.ts
+│   │   │   ├── lib.es2020.number.d.ts
+│   │   │   ├── lib.es2020.promise.d.ts
+│   │   │   ├── lib.es2020.sharedmemory.d.ts
+│   │   │   ├── lib.es2020.string.d.ts
+│   │   │   ├── lib.es2020.symbol.wellknown.d.ts
+│   │   │   ├── lib.es2021.d.ts
+│   │   │   ├── lib.es2021.full.d.ts
+│   │   │   ├── lib.es2021.intl.d.ts
+│   │   │   ├── lib.es2021.promise.d.ts
+│   │   │   ├── lib.es2021.string.d.ts
+│   │   │   ├── lib.es2021.weakref.d.ts
+│   │   │   ├── lib.es2022.array.d.ts
+│   │   │   ├── lib.es2022.d.ts
+│   │   │   ├── lib.es2022.error.d.ts
+│   │   │   ├── lib.es2022.full.d.ts
+│   │   │   ├── lib.es2022.intl.d.ts
+│   │   │   ├── lib.es2022.object.d.ts
+│   │   │   ├── lib.es2022.regexp.d.ts
+│   │   │   ├── lib.es2022.sharedmemory.d.ts
+│   │   │   ├── lib.es2022.string.d.ts
+│   │   │   ├── lib.es2023.array.d.ts
+│   │   │   ├── lib.es2023.collection.d.ts
+│   │   │   ├── lib.es2023.d.ts
+│   │   │   ├── lib.es2023.full.d.ts
+│   │   │   ├── lib.es2023.intl.d.ts
+│   │   │   ├── lib.es5.d.ts
+│   │   │   ├── lib.es6.d.ts
+│   │   │   ├── lib.esnext.array.d.ts
+│   │   │   ├── lib.esnext.collection.d.ts
+│   │   │   ├── lib.esnext.d.ts
+│   │   │   ├── lib.esnext.decorators.d.ts
+│   │   │   ├── lib.esnext.disposable.d.ts
+│   │   │   ├── lib.esnext.full.d.ts
+│   │   │   ├── lib.esnext.intl.d.ts
+│   │   │   ├── lib.esnext.object.d.ts
+│   │   │   ├── lib.esnext.promise.d.ts
+│   │   │   ├── lib.esnext.regexp.d.ts
+│   │   │   ├── lib.esnext.string.d.ts
+│   │   │   ├── lib.scripthost.d.ts
+│   │   │   ├── lib.webworker.asynciterable.d.ts
+│   │   │   ├── lib.webworker.d.ts
+│   │   │   ├── lib.webworker.importscripts.d.ts
+│   │   │   ├── lib.webworker.iterable.d.ts
+│   │   │   ├── pl
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── pt-br
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── ru
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── tr
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   ├── tsc.js
+│   │   │   ├── tsserver.js
+│   │   │   ├── tsserverlibrary.d.ts
+│   │   │   ├── tsserverlibrary.js
+│   │   │   ├── typesMap.json
+│   │   │   ├── typescript.d.ts
+│   │   │   ├── typescript.js
+│   │   │   ├── typingsInstaller.js
+│   │   │   ├── watchGuard.js
+│   │   │   ├── zh-cn
+│   │   │   │   └── diagnosticMessages.generated.json
+│   │   │   └── zh-tw
+│   │   │       └── diagnosticMessages.generated.json
+│   │   └── package.json
+│   └── uuid
+│       ├── CHANGELOG.md
+│       ├── CONTRIBUTING.md
+│       ├── LICENSE.md
+│       ├── README.md
+│       ├── dist
+│       │   ├── bin
+│       │   │   └── uuid
+│       │   ├── commonjs-browser
+│       │   │   ├── index.js
+│       │   │   ├── md5.js
+│       │   │   ├── native.js
+│       │   │   ├── nil.js
+│       │   │   ├── parse.js
+│       │   │   ├── regex.js
+│       │   │   ├── rng.js
+│       │   │   ├── sha1.js
+│       │   │   ├── stringify.js
+│       │   │   ├── v1.js
+│       │   │   ├── v3.js
+│       │   │   ├── v35.js
+│       │   │   ├── v4.js
+│       │   │   ├── v5.js
+│       │   │   ├── validate.js
+│       │   │   └── version.js
+│       │   ├── esm-browser
+│       │   │   ├── index.js
+│       │   │   ├── md5.js
+│       │   │   ├── native.js
+│       │   │   ├── nil.js
+│       │   │   ├── parse.js
+│       │   │   ├── regex.js
+│       │   │   ├── rng.js
+│       │   │   ├── sha1.js
+│       │   │   ├── stringify.js
+│       │   │   ├── v1.js
+│       │   │   ├── v3.js
+│       │   │   ├── v35.js
+│       │   │   ├── v4.js
+│       │   │   ├── v5.js
+│       │   │   ├── validate.js
+│       │   │   └── version.js
+│       │   ├── esm-node
+│       │   │   ├── index.js
+│       │   │   ├── md5.js
+│       │   │   ├── native.js
+│       │   │   ├── nil.js
+│       │   │   ├── parse.js
+│       │   │   ├── regex.js
+│       │   │   ├── rng.js
+│       │   │   ├── sha1.js
+│       │   │   ├── stringify.js
+│       │   │   ├── v1.js
+│       │   │   ├── v3.js
+│       │   │   ├── v35.js
+│       │   │   ├── v4.js
+│       │   │   ├── v5.js
+│       │   │   ├── validate.js
+│       │   │   └── version.js
+│       │   ├── index.js
+│       │   ├── md5-browser.js
+│       │   ├── md5.js
+│       │   ├── native-browser.js
+│       │   ├── native.js
+│       │   ├── nil.js
+│       │   ├── parse.js
+│       │   ├── regex.js
+│       │   ├── rng-browser.js
+│       │   ├── rng.js
+│       │   ├── sha1-browser.js
+│       │   ├── sha1.js
+│       │   ├── stringify.js
+│       │   ├── uuid-bin.js
+│       │   ├── v1.js
+│       │   ├── v3.js
+│       │   ├── v35.js
+│       │   ├── v4.js
+│       │   ├── v5.js
+│       │   ├── validate.js
+│       │   └── version.js
+│       ├── package.json
+│       └── wrapper.mjs
+├── package-lock.json
+├── package.json
+├── src
+│   ├── DynamoDBRepository.ts
+│   ├── config
+│   │   └── index.ts
+│   ├── enums
+│   │   ├── awsRegion.ts
+│   │   ├── beginsWithSk.ts
+│   │   ├── eventSystem.ts
+│   │   ├── eventsTableAttributes.ts
+│   │   ├── index.ts
+│   │   ├── schemaType.ts
+│   │   ├── stage.ts
+│   │   ├── usersTable.ts
+│   │   └── webSocketTarget.ts
+│   ├── index.ts
+│   ├── schemas
+│   │   ├── event.ts
+│   │   ├── eventConnection.ts
+│   │   ├── eventPlayers.ts
+│   │   ├── eventRounds.ts
+│   │   ├── index.ts
+│   │   └── user.ts
+│   └── types
+│       ├── deleteItemsRequest.ts
+│       ├── event.ts
+│       ├── extendedProfile.ts
+│       ├── getItemsRequest.ts
+│       ├── index.ts
+│       ├── profile.ts
+│       └── userEvent.ts
+├── structure.txt
+└── tsconfig.json
+
+735 directories, 3559 files

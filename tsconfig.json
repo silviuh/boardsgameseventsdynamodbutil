@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ES2018",  // Compile to ES2018 as it's well supported by Node.js environments
+      "module": "commonjs",  // Use commonjs for compatibility with Node.js module system
+      "outDir": "./dist",  // Output compiled files to the dist directory
+      "rootDir": "./src",  // Root directory of source files
+      "strict": true,  // Enable all strict type-checking options
+      "esModuleInterop": true,  // Allows compilation of ES modules with CommonJS modules
+      "skipLibCheck": true,  // Skip type checking of all declaration files (*.d.ts)
+      "forceConsistentCasingInFileNames": true,  // Disallow inconsistently-cased references to the same file
+      "moduleResolution": "node",  // Use Node.js style module resolution
+      "experimentalDecorators": true,  // Enable experimental support for decorators
+      "emitDecoratorMetadata": true  // Emit design-type metadata for decorated declarations in source
+    },
+    "include": ["src/**/*"],  // Include all files in the src folder
+    "exclude": ["node_modules", "dist"]  // Exclude these folders from compilation
+  }
+  
